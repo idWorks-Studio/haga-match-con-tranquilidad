@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@/src/components/ui/atoms/Button';
+import { Button } from '@/src/components/atoms/Button';
 
 export interface Module1CardProps {
   className?: string;

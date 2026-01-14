@@ -45,3 +45,10 @@ html {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+.module-section {
+  background-color: #f8f8f8;
+  background-image: url('/assets/images/texture-paper.png');
+  background-repeat: repeat;
+  background-size: cover;
+}
