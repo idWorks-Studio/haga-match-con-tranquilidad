@@ -7,11 +7,11 @@ export interface Module3SectionProps {
 
 export const Module3Section: React.FC<Module3SectionProps> = ({ className = '' }) => {
   return (
-    <section id="module3" className={`py-12 md:py-16 ${className}`}>
+    <section id="module3" className={`py-6 md:py-8 ${className}`}>
         <CardModule 
             imageSrc='/assets/images/descubra.png'
-            title='3. Descubra cómo Seguros Bolívar puede acompañarlo a cumplir sus sueños'
-            description='Con las siguientes herramientas diseñadas para que usted.'    
+            title='¡Elija la tranquilidad!'
+            description='Evite los riesgos y tome decisiones más seguras!'    
         />
      </section>
   );

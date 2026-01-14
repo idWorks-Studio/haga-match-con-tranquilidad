@@ -18,21 +18,19 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
   ];
 
   return (
-    <section id="module2" className={`py-12 md:py-16 ${className}`}>
+    <section id="module2" className={`py-6 md:py-8 ${className}`}>
         <div className="container mx-auto px-4 max-w-5xl">
         
             {/* 1. Reducimos el padding inferior (pb-16) y la altura mínima (min-h) */}
             <div className="relative bg-[#f8f8f8] bg-[url('/assets/images/texture-paper.png')] rounded-[40px] shadow-sm p-8 md:p-14 pb-16 md:pb-20 min-h-[310px] border border-gray-100 overflow-visible">
             
             {/* Texto alineado a la izquierda con menos margen inferior (mb-6) */}
-            <div className="text-left mb-6">
+            <div className="text-center mb-6">
                 <h2 className="text-[#038450] text-2xl md:text-[28px] font-bold leading-[1.4] mb-3">
-                2. Ellos ya están cumpliendo sus sueños
+                  ¿Sabe como elegir la opción ideal para su tranquilidad?
                 </h2>
-                <p className="text-base text-gray-700 leading-[1.4] max-w-2xl">
-                Vea las siguientes historias y conozca cómo ellos aumentaron sus probabilidades y aprendieron a administrar el riesgo.
-                <br />
-                ¡Haga que su historia sea la próxima!
+                <p className="text-base text-gray-700 leading-[1.4]">
+                  Haga clíc en cada vídeo y descubra cómo otros aprendieron a identificar y administrar el riesgo.
                 </p>
             </div>
 
@@ -70,13 +68,7 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
             <div className="h-20 md:h-24"></div>
       </div>
 
-      <div className="container mx-auto mt-12 mb-12 px-4 max-w-4xl">
-        <p className="text-base text-gray-700 text-center leading-[1.4]">
-          En el video anterior Jorge supo administrar el riesgo y evitar un impacto mayor en su cultivo, incrementando así las probabilidades de cumplir sus sueños
-        </p>
-      </div>
-
-      <ConoceMas />
+      <ConoceMas className='pt-12 md:pt-16'/>
 
       <CardQuiz />
     </section>

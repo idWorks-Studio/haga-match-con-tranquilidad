@@ -16,7 +16,7 @@ export const CardQuiz: React.FC<CardQuizProps> = ({ className = '' }) => {
   ];
 
   return (
-    <div className={`py-12 md:py-16 ${className}`}>
+    <div className={`pt-12 md:pt-16 ${className}`}>
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="overflow-hidden">
           <div className="flex flex-col md:flex-row gap-8">
