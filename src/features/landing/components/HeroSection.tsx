@@ -7,7 +7,7 @@ export interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ className = '' }) => {
   return (
-    <section id="hero">
+    <section id="hero" className={className}>
         <div className="relative w-full overflow-hidden">
           <Image 
             src="/assets/images/hero-section.png" 
@@ -25,8 +25,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className = '' }) => {
       <div className="flex flex-col items-center justify-center w-full mt-8 md:mt-12 space-y-12">
         <div className="relative">
           <div className="bg-[#038450] text-white px-6 py-4 md:py-6 rounded-3xl shadow-md relative">
-            <p className="text-center text-lg md:text-xl font-bold">
-              Tranquilo, nosotros le explicamos
+            <p className="text-center text-lg md:text-xl font-bold font-italic">
+              Tranquilo, <span className="text-[#f4d461]">nosotros le explicamos</span>
             </p>
             {/* Pointed bottom */}
           </div>

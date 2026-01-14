@@ -1,21 +1,26 @@
 import React from 'react';
 import { CardModule } from '@/src/components/ui/organisms/CardModule';
-import { ResultsDisplay } from './components/ResultsDisplay';
+import { CardResultsDisplay } from '@/src/components/ui/organisms/CardResultsDisplay';
 
 export interface Module1SectionProps {
+  result?: string;
   className?: string;
 }
 
 export const Module1Section: React.FC<Module1SectionProps> = ({ className = '' }) => {
   return (
-    <section id="module1" className={`py-12 md:py-16 ${className}`}>
+    <section id="module1" className={`py-6 md:py-8 ${className}`}>
         <CardModule 
             imageSrc='/assets/images/primero-un-diagnostico.png'
-            title='1. Haga primero un diagnóstico'
-            description='Responda las siguientes preguntas y revise que tan altas están sus probabilidades de hacer sus sueños.'    
+            title='¿Situaciones inesperadas?'
+            description='Responda las siguientes preguntas y haga un diagnóstico de cómo está su relación con la gestión del riesgo.'    
         />
 
-        <ResultsDisplay />
+        <CardResultsDisplay
+          className="pt-6 md:mt-12"
+          result="Alta"
+          text="De acuerdo a sus respuestas su relación con los riesgos es:" 
+        />
      </section>
   );
 };
