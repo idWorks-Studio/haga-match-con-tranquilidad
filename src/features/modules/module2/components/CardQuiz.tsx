@@ -33,7 +33,7 @@ export const CardQuiz: React.FC<CardQuizProps> = ({ className = '' }) => {
             </div>
 
             {/* Right side - Quiz Content */}
-            <div className="bg-[#f8f8f8] bg-[url('/assets/images/texture-paper.png')] rounded-2xl shadow-lg">
+            <div className="module-section rounded-2xl shadow-lg">
               <div className="flex-1 space-y-6 p-6 md:p-8 text-left">
                 <div className="space-y-2">
                   <p className="text-base text-gray-700 leading-[1.4]">

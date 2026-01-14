@@ -1,4 +1,4 @@
-import { CardModuleLeftContent } from '@/src/components/ui/organisms/CardModuleLeftContent';
+import { CardModuleLeftContent } from '@/src/components/organisms/CardModuleLeftContent';
 import React from 'react';
 
 export interface ConoceMasProps {

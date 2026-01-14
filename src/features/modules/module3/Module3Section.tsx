@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardModule } from '@/src/components/ui/organisms/CardModule';
+import { CardModule } from '@/src/components/organisms/CardModule';
 
 export interface Module3SectionProps {
   className?: string;

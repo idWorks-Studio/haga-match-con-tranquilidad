@@ -1,4 +1,4 @@
-import { PlayIcon } from '@/src/components/ui/atoms/PlayIcon';
+import { PlayIcon } from '@/src/components/atoms/PlayIcon';
 import React from 'react';
 
 export interface Module2CardProps {
