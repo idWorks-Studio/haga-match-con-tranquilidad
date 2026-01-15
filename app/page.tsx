@@ -1,3 +1,4 @@
+"use client";
 import { HeroSection } from '@/src/features/landing/components/HeroSection';
 import { Module1Section } from '@/src/features/modules/module1/Module1Section';
 import { Module2Section } from '@/src/features/modules/module2/Module2Section';

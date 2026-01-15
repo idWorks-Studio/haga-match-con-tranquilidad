@@ -12,7 +12,7 @@ export const Module3Section: React.FC<Module3SectionProps> = ({ className = '' }
             imageSrc='/assets/images/descubra.png'
             title='¡Elija la tranquilidad!'
             description='Evite los riesgos y tome decisiones más seguras!' 
-            onBtnClick={() => null}
+            onBtnClick={() => {}}
         />
      </section>
   );
