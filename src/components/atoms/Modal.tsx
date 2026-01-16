@@ -5,32 +5,25 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
-  variant?: 'video' | 'scorm' | 'tiktok';
+  maxWidth?: string; 
 }
 
-export const Modal = ({ isOpen, onClose, children, variant = 'scorm' }: ModalProps) => {
+export const Modal = ({ isOpen, onClose, children, maxWidth = "w-fit h-fit" }: ModalProps) => {
   if (!isOpen) return null;
 
-  const configs = {
-    tiktok: "max-w-[380px] aspect-[9/16]",
-    video:  "max-w-5xl aspect-video",
-    scorm:  "max-w-6xl h-[85vh]"
-  };
-
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
-      <div className={`relative w-full ${configs[variant]} overflow-hidden rounded-3xl bg-transparent`}>
-        
-        {/* Botón cerrar */}
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-4">
+      {/* Eliminamos el max-w-5xl fijo para que maxWidth controle todo */}
+      <div className={`relative overflow-hidden rounded-3xl bg-black shadow-2xl ${maxWidth}`}>
         <button 
           onClick={onClose} 
-          className="absolute top-4 right-4 z-[110] p-2 bg-black/40 hover:bg-black/60 text-white rounded-full backdrop-blur-sm transition-all"
+          className="absolute top-4 right-4 z-[110] p-2 bg-black/40 hover:bg-black/60 text-white rounded-full transition-all border border-white/10"
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
-        {/* Contenido sin padding */}
-        <div className="w-full h-full overflow-hidden">
+        {/* Contenido sin padding ni aspect-video forzado */}
+        <div className="flex items-center justify-center">
           {children}
         </div>
       </div>
