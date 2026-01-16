@@ -11,11 +11,11 @@ export interface Module2SectionProps {
 }
 
 const videoThumbnails = [
-  { id: 1, title:"6 Beneficios del Seguro de salud", image:"/thumb1.jpg", tiktokId: '7568890911501880587' },
-  { id: 2, title:"¿Qué es el seguro de salud?", image:"/thumb2.jpg", tiktokId: '7568890911501880587' },
-  { id: 3, title:"¿Cómo elegir el seguro ideal?", image:"/thumb3.jpg", tiktokId: '7568890911501880587' },
-  { id: 4, title:"¿Qué cubre el seguro de salud?", image:"/thumb4.jpg", tiktokId: '7568890911501880587' },
-  { id: 5, title:"¿Por qué es importante tener seguro?", image:"/thumb5.jpg", tiktokId: '7568890911501880587' },
+  { id: 1, title:"Tenga siempre un plan B", image:"/assets/images/thumb1.png", tiktokId: '7568890911501880587' },
+  { id: 2, title:"No arriesgue su tranquilidad", image:"/assets/images/thumb2.png", tiktokId: '7568890911501880587' },
+  { id: 3, title:"Independencia segura", image:"/assets/images/thumb3.png", tiktokId: '7568890911501880587' },
+  { id: 4, title:"Aventuras seguras", image:"/assets/images/thumb4.png", tiktokId: '7568890911501880587' },
+  { id: 5, title:"Cada peso cuenta", image:"/assets/images/thumb5.png", tiktokId: '7568890911501880587' },
 ];
 
 export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }) => {
@@ -44,34 +44,39 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
                   </p>
               </div>
 
-              {/* 2. Ajustamos translate-y para que suban más hacia el texto */}
-              <div className="absolute bottom-0 left-0 right-0 flex justify-center translate-y-1/2 px-4">
-                  <div className="flex gap-3 md:gap-4 overflow-x-auto no-scrollbar pb-4">
-                    {videoThumbnails.map((video) => (
-                      <div
-                        key={video.id}
-                        onClick={() => handleOpenVideo(video.tiktokId)} // EVENTO AGREGADO
-                        className="relative flex-shrink-0 w-[100px] h-[160px] md:w-[120px] md:h-[200px] overflow-hidden group cursor-pointer shadow-lg transition-transform hover:-translate-y-2"
-                      >
+              <div className="absolute bottom-0 left-0 right-0 flex justify-center translate-y-1/2 px-4 pt-12 md:pt-0">
+                <div className="flex gap-4 md:gap-6 overflow-x-auto no-scrollbar pb-6">
+                  {videoThumbnails.map((video) => (
+                    <div
+                      key={video.id}
+                      onClick={() => handleOpenVideo(video.tiktokId)}
+                      /* Aumento de tamaño: w-32/h-52 en móvil y w-44/h-72 en escritorio */
+                      className="relative flex-shrink-0 w-[128px] h-[208px] md:w-[156px] md:h-[288px] overflow-hidden group cursor-pointer shadow-xl transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl"
+                    >
+                      {/* Contenedor de Imagen */}
                       <div className="absolute inset-0 bg-gray-200">
-                          <Image src={video.image} alt={video.title} fill className="object-cover" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      </div>
-                      
-                      <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="bg-white/90 rounded-full p-2 group-hover:scale-110 transition-transform">
-                          <PlayIcon size={18} className="text-[#038450] fill-current" />
-                          </div>
+                        <Image 
+                          src={video.image} 
+                          alt={video.title} 
+                          fill 
+                          className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                        />
+                        {/* Degradado más oscuro en la base para resaltar el botón */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                       </div>
 
-                      <div className="absolute bottom-2 left-0 right-0 text-center">
-                          <span className="text-white text-[9px] md:text-[11px] font-bold uppercase drop-shadow-md">
-                          {video.title}
-                          </span>
+                      {/* Botón Play ajustado a la parte inferior */}
+                      <div className="absolute inset-x-0 bottom-4 flex items-center justify-center">
+                        <div className="bg-white rounded-full p-3 shadow-lg group-hover:bg-[#038450] group-hover:scale-110 transition-all duration-300">
+                          <PlayIcon 
+                            size={24} 
+                            className="text-[#038450] group-hover:text-white fill-current transition-colors" 
+                          />
+                        </div>
                       </div>
-                      </div>
+                    </div>
                   ))}
-                  </div>
+                </div>
               </div>
 
               {/* REPRODUCTOR DE TIKTOK (ORGANISMO) */}
@@ -89,7 +94,7 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
             <div className="h-20 md:h-24"></div>
       </div>
 
-      <ConoceMas className='pt-12 md:pt-16'/>
+      <ConoceMas className='pt-24 md:pt-32'/>
 
       <CardQuiz />
     </section>

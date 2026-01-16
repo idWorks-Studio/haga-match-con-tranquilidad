@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { Modal } from "../atoms/Modal";
+import { ScormFrame } from "../molecules/ScormFrame";
 
 type ScormAPI = {
   LMSInitialize: () => string;
@@ -43,7 +44,9 @@ export const ScormPlayer = ({ isOpen, onClose, scormUrl, onFinish }: ScormPlayer
             if (value === "completed" || value === "passed") {
               onFinish({ type: 'status', value: 'completado' });
               // Cerramos el modal tras un breve delay para que Storyline termine de procesar
-              setTimeout(() => onClose(), 1500);
+              setTimeout(() => {
+                onClose()
+              }, 1000);
             }
           }
           return "true";
@@ -54,12 +57,8 @@ export const ScormPlayer = ({ isOpen, onClose, scormUrl, onFinish }: ScormPlayer
   }, [isOpen, onClose, onFinish]);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-        <iframe 
-            src={scormUrl}
-            className="w-full h-full border-none block"
-            allow="autoplay"
-        />
+    <Modal isOpen={isOpen} onClose={onClose} maxWidth="max-w-5xl w-full">
+      <ScormFrame src={scormUrl} />
     </Modal>
   );
 };
