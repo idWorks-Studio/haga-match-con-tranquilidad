@@ -1,24 +1,39 @@
-import React from 'react';
+"use client";
+import React, { useState, useEffect } from "react";
 import { CardModule } from '@/src/components/organisms/CardModule';
-import { ScormFrame } from '@/src/components/molecules/ScormFrame';
+import { ScormPlayer } from '@/src/components/organisms/ScormPlayer';
 
 export interface Module3SectionProps {
   className?: string;
 }
 
-export const Module3Section: React.FC<Module3SectionProps> = ({ className = '' }) => {
+export const Module3Section: React.FC<Module3SectionProps> = ({ 
+  className = '' 
+}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleFinish = (data: {
+    score?: number;
+    status?: string;
+    suspendData?: string;
+  }) => {};
+
   return (
     <section id="module3" className={`py-6 md:py-8 ${className}`}>
-      <div className="container mx-auto px-4 max-w-5xl">
-        <ScormFrame src="/scorm/elija-la-tranquilidad/story.html" />
-      </div>
-        {/*<CardModule 
-            imageSrc='/assets/images/descubra.png'
-            title='¡Elija la tranquilidad!'
-            description='Evite los riesgos y tome decisiones más seguras!' 
-            onBtnClick={() => {}}
-        />*/}
-     </section>
+      <CardModule 
+        imageSrc='/assets/images/descubra.png'
+        title='¡Elija la tranquilidad!'
+        description='Evite los riesgos y tome decisiones más seguras!' 
+        onBtnClick={() => setIsModalOpen(true)}
+      />
+
+      <ScormPlayer
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        scormUrl="/scorm/elija-la-tranquilidad/story.html"
+        onFinish={handleFinish}
+      />
+    </section>
   );
 };
 
