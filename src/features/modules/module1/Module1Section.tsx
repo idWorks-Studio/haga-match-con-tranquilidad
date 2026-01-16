@@ -1,59 +1,76 @@
 "use client";
-import React, { useState } from 'react';
-import { CardModule } from '@/src/components/organisms/CardModule';
-import { CardResultsDisplay } from '@/src/components/organisms/CardResultsDisplay';
-import { ScormPlayer } from '@/src/components/organisms/ScormPlayer';
+import React, { useState, useEffect } from "react";
+import { CardModule } from "@/src/components/organisms/CardModule";
+import { CardResultsDisplay } from "@/src/components/organisms/CardResultsDisplay";
+import { ScormPlayer } from "@/src/components/organisms/ScormPlayer";
 
 export interface Module1SectionProps {
   className?: string;
 }
 
-export const Module1Section: React.FC<Module1SectionProps> = ({ className = '' }) => {
-  // 1. Creamos el estado para controlar si el modal está abierto o cerrado
+export const Module1Section: React.FC<Module1SectionProps> = ({
+  className = "",
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [resultado, setResultado] = useState<string | null>(null); // Estado para la respuesta
 
-  const handleFinish = (data: { type: string, value: string }) => {
-    // Aquí puedes personalizar qué mostrar según lo que envíe el SCORM
-    if (data.type === 'score') {
-      setResultado(`Tu puntaje fue: ${data.value}%`);
-    } else {
-      setResultado("¡Encuesta completada con éxito!");
+  // Estado real SCORM
+  const [score, setScore] = useState<number | null>(null);
+  const [status, setStatus] = useState<string | null>(null);
+
+  const handleFinish = (data: {
+    score?: number;
+    status?: string;
+    suspendData?: string;
+  }) => {
+    if (data.score !== undefined) {
+      setScore(data.score);
     }
-    
-    // OPCIONAL: Guardar en el navegador para que no se pierda al recargar
-    localStorage.setItem("estado_encuesta", "terminado");
+
+    if (data.status) {
+      setStatus(data.status);
+    }
+
+    // Persistencia simple (opcional)
+    localStorage.setItem(
+      "scorm_result",
+      JSON.stringify({
+        score: data.score,
+        status: data.status,
+      })
+    );
   };
+
+  // DEBUG
+  useEffect(() => {
+    if (score !== null || status !== null) {
+      console.log("SCORM RESULT:", { score, status });
+    }
+  }, [score, status]);
 
   return (
     <section id="module1" className={`py-6 md:py-8 ${className}`}>
-        <CardModule 
-          imageSrc='/assets/images/primero-un-diagnostico.png'
-          title='¿Situaciones inesperadas?'
-          description='Responda las siguientes preguntas y haga un diagnóstico de cómo está su relación con la gestión del riesgo.'    
-          onBtnClick={() => setIsModalOpen(true)}
-        />
+      <CardModule
+        imageSrc="/assets/images/primero-un-diagnostico.png"
+        title="¿Situaciones inesperadas?"
+        description="Responda las siguientes preguntas y haga un diagnóstico de cómo está su relación con la gestión del riesgo."
+        onBtnClick={() => setIsModalOpen(true)}
+      />
 
-        {/* El modal que reacciona al estado */}
-        <ScormPlayer 
-          isOpen={isModalOpen} 
-          onClose={() => setIsModalOpen(false)} 
-          scormUrl="/scorm/encuesta/story.html" 
-          onFinish={handleFinish}
-        />
-        
-        {(() => {
-          console.log('User Score:', resultado);
-          return null;
-        })()}
+      <ScormPlayer
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        scormUrl="/scorm/encuesta/story.html"
+        onFinish={handleFinish}
+      />
 
+      {/* Mostrar resultados solo cuando el curso terminó */}
+      {status && (
         <CardResultsDisplay
           className="pt-6 md:mt-12"
-          result="Alta"
-          text="De acuerdo a sus respuestas su relación con los riesgos es:" 
+          result={score !== null ? score.toString() : "—"}
+          text="De acuerdo a sus respuestas su relación con los riesgos es:"
         />
-
-     </section>
+      )}
+    </section>
   );
 };
-

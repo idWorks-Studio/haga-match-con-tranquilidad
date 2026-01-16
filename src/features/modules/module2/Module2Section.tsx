@@ -96,7 +96,7 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
 
       <ConoceMas className='pt-24 md:pt-32'/>
 
-      <CardQuiz />
+      {/* <CardQuiz /> */}
     </section>
   );
 };
