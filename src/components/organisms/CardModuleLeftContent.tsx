@@ -7,12 +7,20 @@ interface CardModuleLeftContentProps {
     imageDescription?: string;
     title: string;
     description: string;
+    onStart: (() => void);
 }
 
-export const CardModuleLeftContent = ({ className = '', title, description, imageSrc, imageDescription }: CardModuleLeftContentProps) => {
+export const CardModuleLeftContent = ({ 
+    className = '', 
+    title, 
+    description, 
+    imageSrc, 
+    imageDescription,
+    onStart 
+}: CardModuleLeftContentProps) => {
     return (
         <div className={className}>
-            <div className="container mx-auto px-4 max-w-5xl">
+            <div className="container mx-auto px-4 max-w-5lg">
                 <div className="module-section rounded-2xl shadow-lg overflow-hidden">
                     <div className="flex flex-col md:flex-row">
                         
@@ -27,7 +35,7 @@ export const CardModuleLeftContent = ({ className = '', title, description, imag
                                 </p>
                             </div>
                             <div>
-                                <Button>Iniciar</Button>
+                                <Button onClick={onStart}>Iniciar</Button>
                             </div>
                         </div>
             

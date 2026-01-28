@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../public/assets/fonts/bolivar.css";
 
 :root {
   --background: #ffffff;
@@ -20,8 +21,9 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Bolivar, sans-serif;
   text-align: center;
+  font-size: 1rem;
 }
 
 /* Smooth scrolling for anchor links */
@@ -44,4 +46,94 @@ html {
   background-image: url('/assets/images/texture-paper.png');
   background-repeat: repeat;
   background-size: cover;
+}
+
+/* Clase combinada para ambos bordes rasgados amarillos */
+.bg-paper-yellow {
+  background-image: 
+    url('/assets/images/margin-top-yellow.png'), 
+    url('/assets/images/margin-bottom-yellow.png');
+  
+  background-position: 
+    top center, 
+    bottom center;
+  
+  background-repeat: 
+    no-repeat, 
+    no-repeat;
+
+  /* Asegúrate de que las imágenes no se estiren de forma extraña */
+  background-size: 100% auto; 
+}
+
+.title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: var(--color-primary-green);
+}
+
+/* Estándar para todos los organismos del módulo */
+.module-container-width {
+   background-image: url('/assets/images/texture-paper.png');
+  width: 100%;
+  max-width: 1024px; /* max-w-5xl */
+  margin-left: auto; /* mx-auto */
+  margin-right: auto; /* mx-auto */
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem; /* px-4 */
+  /* 1024px es ideal para este diseño */
+}
+
+.quiz-card-container {
+  position: relative;
+  border-radius: 1.5rem; /* rounded-3xl */
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* shadow-lg */
+  overflow: hidden;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #f3f4f6; /* border-gray-100 */
+  background-color: #fff; /* bg-white */
+  min-height: 500px; /* min-h-[500px] */
+}
+
+.module-section-combined {
+  /* El orden es clave: primero el borde (frente), luego la textura (atrás) */
+  background-image: 
+    url('/assets/images/margin-top-green.png'), 
+    url('/assets/images/texture-paper.png');
+
+  background-position: 
+    top center, 
+    center center;
+
+  background-repeat: 
+    no-repeat, 
+    repeat;
+
+  /* El borde se ajusta al ancho, la textura cubre el resto */
+  background-size: 
+    100% auto, 
+    cover;
+
+  background-color: #f8f8f8; /* Color base por si la textura no carga */
+}
+
+.quiz-footer-container {
+  /* Color gris institucional con transparencia (RGBA) */
+  background-color: rgba(221, 221, 221, 0.5);
+  
+  /* Efecto de desenfoque para un toque moderno */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  
+  /* Reset de bordes y dimensiones */
+  border: none !important;
+  width: 100%;
+  margin-top: auto;
+  
+  /* Alineación vertical */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
