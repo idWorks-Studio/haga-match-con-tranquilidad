@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { PlayIcon } from '@/src/components/atoms/PlayIcon';
 import Image from "next/image";
-import { ConoceMas } from './components/ConoceMas';
 import { TikTokPlayer } from '@/src/components/organisms/TikTokPlayer';
 import { QuizModule } from '@/src/components/organisms/QuizModule';
 import { cuestionario } from '@/src/data/quiz.json';
