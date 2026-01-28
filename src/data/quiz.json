@@ -1,0 +1,111 @@
+{
+  "cuestionario": {
+    "id": "evaluacion-riesgos-01",
+    "titulo": "Evaluación de Conocimientos: Módulo 2",
+    "preguntas": [
+      {
+        "id": "p1",
+        "introduccion": "<b>En el video anterior Jorge supo administrar el riesgo y evitar un impacto mayor en su cultivo, incrementando así las probabilidades de vivir con tranquilidad",
+        "imagen": "",
+        "contexto": "Seleccione las respuestas correctas",
+        "enunciado": "¿Cuáles son los 3 pasos para administrar un riesgo?",
+        "tipo": "multiple-choice",
+        "opciones": [
+          { "id": "a", "texto": "Identificar el riesgo y el daño que puede causar" }, 
+          { "id": "b", "texto": "Tomar medidas para evitar que suceda o para disminuir su impacto" },
+          { "id": "c", "texto": "Transferir todos los riesgos a otras personas o instituciones" },
+          { "id": "d", "texto": "Ignorar el riesgo mientras no ocurra, y reaccionar solo si pasa algo" },
+          { "id": "e", "texto": "Tener presente opciones de respuesta y recuperación para cuando el riesgo se materialice" },
+          { "id": "f", "texto": "Todas las anteriores" }
+        ],
+        "numRespuestasCorrectas": 3,
+        "respuestasCorrectas": ["a", "b", "c"]
+      },
+      {
+        "id": "p2",
+        "introduccion": "<b>En el caso anterior Alejo supo identificar el riesgo, ahora le toca a usted</b><br />Responda de forma correcta a la siguiente actividad",
+        "imagen": "",
+        "contexto": "Seleccione 3 situaciones que representan un riesgo real y que no le permitirían alcanzar esta meta.",
+        "enunciado": "Alejo tiene una meta clara, comprar una casa para su familia.",
+        "tipo": "multiple-choice",
+        "opciones": [
+          { "id": "a", "texto": "Perder el empleo que me permite ahorrar" },
+          { "id": "b", "texto": "Confiar los ahorros a una persona sin respaldo legal" },
+          { "id": "c", "texto": "Aumentos inesperados en tasas de interés del crédito" },
+          { "id": "d", "texto": "Comer fuera una vez al mes" },
+          { "id": "e", "texto": "Hacer el mercado con descuento" }
+        ],
+        "numRespuestasCorrectas": 3,
+        "respuestasCorrectas": ["a", "b", "c"]
+      },
+      {
+        "id": "p3",
+        "introduccion": "<b>Repasemos la diferencia entre Prevenir o Mitigar</b><br />Lea cada situación y elija si la acción que se tomó corresponde a prevenir o mitigar.",
+        "imagen": "",
+        "contexto": "Milena vive en una zona con fallas eléctricas frecuentes. Instaló un regulador de voltaje para proteger su nevera y electrodomésticos.",
+        "tipo": "single-choice",
+        "opciones": [
+          { "id": "a", "texto": "Mitigar" },
+          { "id": "b", "texto": "Prevenir" }
+        ],
+        "numRespuestasCorrectas": 1,
+        "respuestasCorrectas": ["a"]
+      },
+      {
+        "id": "p4",
+        "introduccion": "<b>Repasemos la diferencia entre Prevenir o Mitigar</b><br />Lea cada situación y elija si la acción que se tomó corresponde a prevenir o mitigar.",
+        "imagen": "",
+        "contexto": "Milena guarda todos sus archivos importantes en la nube y en un disco externo, por si su computador falla.",
+        "tipo": "single-choice",
+        "opciones": [
+          { "id": "a", "texto": "Mitigar" },
+          { "id": "b", "texto": "Prevenir" }
+        ],
+        "numRespuestasCorrectas": 1,
+        "respuestasCorrectas": ["a"]
+      }
+      ,
+      {
+        "id": "p5",
+        "introduccion": "<b>Repasemos la diferencia entre Prevenir o Mitigar</b><br />Lea cada situación y elija si la acción que se tomó corresponde a prevenir o mitigar.",
+        "imagen": "",
+        "contexto": "Milena vive cerca a una montaña, como ha llovido mucho, reparó su tejado e instalo sistemas de ahorro de agua lluvia.",
+        "tipo": "single-choice",
+        "opciones": [
+          { "id": "a", "texto": "Mitigar" },
+          { "id": "b", "texto": "Prevenir" }
+        ],
+        "numRespuestasCorrectas": 1,
+        "respuestasCorrectas": ["a"]
+      },
+      {
+        "id": "p6",
+        "introduccion": "<b>¿Qué significa asumir el riesgo?</b><br />Juana, ha dejado al azar muchas de sus acciones, asumiendo las consecuencias de estas en el último momento, sin medir el impacto que esto pueda generarle.",
+        "imagen": "",
+        "enunciado": "Juana no asegura sus cámaras porque prefiere _ en caso de que algo salga mal.",
+        "contexto": "Arrastra y completa la frase que se ajusta más a la situación que atraviesa Juana.",
+        "tipo": "drag-and-drop",
+        "opciones": [
+          { "id": "opt_1", "texto": "asumir el riesgo con sus propios recursos" },
+          { "id": "opt_2", "texto": "cambiar de trabajo si eso pasa" }
+        ],
+        "numRespuestasCorrectas": 1,
+        "respuestasCorrectas": ["opt_1"]
+      },
+      {
+        "id": "p7",
+        "introduccion": "<b>¿Cómo Camilo logró compartir el riesgo?</b><br />Ahora Camilo no deja nada al azar, ha entendido que es necesario compartir los riesgos que se puedan presentar en sus labores diarias.",
+        "imagen": "",
+        "enunciado": "Camilo asumió el riesgo con sus ahorros, pero después decidió transferirlo a _ para proteger sus ingresos.",
+        "contexto": "Completa la frase que se ajusta más a la situación que atraviesa Camilo.",
+        "tipo": "drag-and-drop",
+        "opciones": [
+          { "id": "opt_1", "texto": "una compañía de seguros" },
+          { "id": "opt_2", "texto": "una empresa de servicios" }
+        ],
+        "numRespuestasCorrectas": 1,
+        "respuestasCorrectas": ["opt_1"]
+      }
+    ]
+  }
+}

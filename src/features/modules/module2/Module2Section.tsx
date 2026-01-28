@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 import { PlayIcon } from '@/src/components/atoms/PlayIcon';
 import Image from "next/image";
 import { ConoceMas } from './components/ConoceMas';
-import { CardQuiz } from './components/CardQuiz';
 import { TikTokPlayer } from '@/src/components/organisms/TikTokPlayer';
+import { QuizModule } from '@/src/components/organisms/QuizModule';
+import { cuestionario } from '@/src/data/quiz.json';
+import { Question } from '@/src/models/QuizModel';
+import { CardModuleLeftContent } from '@/src/components/organisms/CardModuleLeftContent';
 
 export interface Module2SectionProps {
   className?: string;
@@ -21,6 +24,7 @@ const videoThumbnails = [
 export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }) => {
   const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showQuiz, setShowQuiz] = useState(false); // Estado para el cambio
 
   const handleOpenVideo = (id: string) => {
     setSelectedVideoId(id);
@@ -29,7 +33,7 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
 
   return (
     <section id="module2" className={`py-6 md:py-8 ${className}`}>
-        <div className="container mx-auto px-4 max-w-5xl">
+        <div className="container mx-auto px-4 max-w-5lg">
         
             {/* 1. Reducimos el padding inferior (pb-16) y la altura mínima (min-h) */}
             <div className="relative module-section rounded-[40px] shadow-sm p-8 md:p-14 pb-16 md:pb-20 min-h-[310px] border border-gray-100 overflow-visible">
@@ -44,14 +48,18 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
                   </p>
               </div>
 
-              <div className="absolute bottom-0 left-0 right-0 flex justify-center translate-y-1/2 px-4 pt-12 md:pt-0">
+              <div className="absolute bottom-0 left-0 right-0 flex justify-center translate-y-[60%] px-4 pt-12 md:pt-0">
                 <div className="flex gap-4 md:gap-6 overflow-x-auto no-scrollbar pb-6">
                   {videoThumbnails.map((video) => (
                     <div
                       key={video.id}
                       onClick={() => handleOpenVideo(video.tiktokId)}
                       /* Aumento de tamaño: w-32/h-52 en móvil y w-44/h-72 en escritorio */
-                      className="relative flex-shrink-0 w-[128px] h-[208px] md:w-[156px] md:h-[288px] overflow-hidden group cursor-pointer shadow-xl transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl"
+                      /* NUEVAS DIMENSIONES:
+                        Móvil: de 128px a 160px (w) y de 208px a 260px (h)
+                        Escritorio: de 156px a 220px (w) y de 288px a 360px (h)
+                      */
+                      className="relative flex-shrink-0 w-[160px] h-[260px] md:w-[220px] md:h-[360px] overflow-hidden group cursor-pointer shadow-xl transition-all duration-300 hover:-translate-y-4 hover:shadow-2xl rounded-2xl"
                     >
                       {/* Contenedor de Imagen */}
                       <div className="absolute inset-0 bg-gray-200">
@@ -94,9 +102,22 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
             <div className="h-20 md:h-24"></div>
       </div>
 
-      <ConoceMas className='pt-24 md:pt-32'/>
-
-      {/* <CardQuiz /> */}
+      
+      {!showQuiz ? (
+        /* PASO A: Card Inicial */
+        <CardModuleLeftContent
+          className='pt-24 md:pt-44'
+          imageSrc="/assets/images/conoce.png"
+          title="Ahora que conoce cómo identificar, administrar, clasificar, compartir, prevenir o mitigar los riesgos"
+          description="Haga la siguiente actividad y descubra cómo estar más cerca de la tranquilidad."
+          onStart={() => setShowQuiz(true)}
+        />
+      ) : (
+        /* PASO B: Quiz (Aparece en el mismo contenedor) */
+        <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <QuizModule  className='pt-24 md:pt-44' preguntas={cuestionario.preguntas as Question[]}/>
+        </div>
+      )}
     </section>
   );
 };

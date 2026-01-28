@@ -7,15 +7,12 @@ import { Footer } from '@/src/features/landing/components/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen w-full flex flex-col items-center">
-      {/* El contenedor con max-width limita el ancho y mx-auto lo centra */}
-      <div className="w-full max-w-6xl mx-auto">
-        <HeroSection />
-        <Module1Section />
-        <Module2Section />
-        <Module3Section />
-        <Footer />
-      </div>
+    <main className="min-h-screen w-full flex flex-col">
+      <HeroSection />
+      <Module1Section />
+      <Module2Section />
+      <Module3Section />
+      <Footer />
     </main>
   );
 }

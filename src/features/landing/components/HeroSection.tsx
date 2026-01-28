@@ -8,18 +8,18 @@ export interface HeroSectionProps {
 export const HeroSection: React.FC<HeroSectionProps> = ({ className = '' }) => {
   return (
     <section id="hero" className={className}>
-        <div className="relative w-full overflow-hidden">
-          <Image 
-            src="/assets/images/hero-section.png" 
-            alt="Hero Section" 
-            width={1920}
-            height={400}
-            // h-[250px] para que no se vea minúscula en móvil
-            // md:h-auto para que recupere su proporción en PC
-            className="w-full h-[250px] md:h-auto object-cover object-center"
-            sizes="100vw"
-            priority
-          />
+      <div className="relative w-full overflow-hidden">
+        <Image 
+          src="/assets/images/hero-section.png" 
+          alt="Hero Section" 
+          width={1920}
+          height={400}
+          // h-[250px] para que no se vea minúscula en móvil
+          // md:h-auto para que recupere su proporción en PC
+          className="w-full h-[250px] md:h-auto object-cover object-center"
+          sizes="100vw"
+          priority
+        />
       </div>
 
       <div className="flex flex-col items-center justify-center w-full mt-8 md:mt-12 space-y-12">
