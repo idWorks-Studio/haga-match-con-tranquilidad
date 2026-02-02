@@ -23,6 +23,7 @@ export const Module3Section: React.FC<Module3SectionProps> = ({
       <CardModule 
         imageSrc='/assets/images/descubra.png'
         title='¡Elija la tranquilidad!'
+        title_section='Módulo 3'
         description='Evite los riesgos y tome decisiones más seguras!' 
         onBtnClick={() => setIsModalOpen(true)}
       />

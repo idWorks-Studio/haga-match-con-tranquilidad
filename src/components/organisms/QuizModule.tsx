@@ -52,33 +52,31 @@ export const QuizModule = ({ className = "", preguntas }: QuizModuleProps) => {
     };
 
     return (
-        <div className={`${className} relative`}>
-            <div className="container mx-auto px-4 max-w-5lg">
-                <div className="module-section-combined relative rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100">
+        <div className={`${className}`}>    
+            <div className="module-container module-section-bg relative shadow-lg">
+                {/* Feedback Modal (Local a la sección) */}
+                <QuizFeedbackModal 
+                    isOpen={modalConfig.isOpen}
+                    isCorrect={modalConfig.isCorrect}
+                    onContinue={handleModalAction}
+                />
                     
-                    {/* Feedback Modal (Local a la sección) */}
-                    <QuizFeedbackModal 
-                        isOpen={modalConfig.isOpen}
-                        isCorrect={modalConfig.isCorrect}
-                        onContinue={handleModalAction}
-                    />
-                    
-                    {/* Header  */}
-                    <div className="text-white pt-10 pb-10 px-6 text-center relative">
-                        <p dangerouslySetInnerHTML={{ __html: preguntas[currentIndex].introduccion }}></p>
-                    </div>
+                {/* Header  */}
+                <div className="module-quiz-title relative rounded-t-lg">
+                    <p dangerouslySetInnerHTML={{ __html: preguntas[currentIndex].introduccion }}></p>
+                </div>
 
-                    {/* Contenido Principal */}
-                    <div className="flex-1 flex flex-col md:flex-row items-center justify-center p-6 gap-10">
-                        {/* Personaje */}
-                        <div className="relative w-64 h-80 md:w-80 md:h-[450px]">
-                            <Image 
-                                src={`/assets/images/modulo-2/${preguntas[currentIndex].id}.png`} 
-                                alt="Personaje" 
-                                fill 
-                                className="object-contain" 
-                            />
-                        </div>
+                {/* Contenido Principal */}
+                <div className="flex-1 flex flex-col md:flex-row items-center justify-center p-6 gap-10">
+                    {/* Personaje */}
+                    <div className="relative w-64 h-80 md:w-80 md:h-[450px]">
+                        <Image 
+                            src={`/assets/images/modulo-2/${preguntas[currentIndex].id}.png`} 
+                            alt="Personaje" 
+                            fill 
+                            className="object-contain" 
+                        />
+                    </div>
 
                         {/* Pregunta y Opciones */}
                         {preguntaActual.tipo === "drag-and-drop" ? (
@@ -90,13 +88,14 @@ export const QuizModule = ({ className = "", preguntas }: QuizModuleProps) => {
                             />
                         ) : (
                             <div className="flex-1 max-w-2xl">
-                                <h2 className="text-[#038450] text-2xl md:text-3xl font-bold mb-4">
-                                    { preguntaActual.enunciado }
-                                </h2>
-                                <p className="text-gray-600 mb-6 italic">
-                                    { preguntaActual.contexto }
-                                </p>
-                            
+                                <div className="text-left">
+                                    <h2 className="title-quiz-question">
+                                        { preguntaActual.enunciado }
+                                    </h2>
+                                    <p className="text-gray-600 mb-6">
+                                        { preguntaActual.contexto }
+                                    </p>
+                                </div>
                                 <MultipleChoiceGroup    
                                     options={preguntaActual.opciones}
                                     selectedIds={selectedIds}
@@ -105,16 +104,16 @@ export const QuizModule = ({ className = "", preguntas }: QuizModuleProps) => {
                                     onComplete={handleValidateAnswer}
                                 />
                             </div>
-                        )}                    
-                    </div>
-                    {/* Footer con Paginación */}
-                    <footer className="quiz-footer-container">
-                        <QuizPagination 
-                            totalSteps={preguntas.length} 
-                            currentStep={currentIndex}
-                        />
-                    </footer>
+                        )} 
                 </div>
+
+                {/* Footer con Paginación */}
+                <footer className="quiz-footer-container">
+                    <QuizPagination 
+                        totalSteps={preguntas.length} 
+                        currentStep={currentIndex}
+                    />
+                </footer>
             </div>
         </div>
     );
