@@ -23,7 +23,8 @@ body {
   color: var(--foreground);
   font-family: Bolivar, sans-serif;
   text-align: center;
-  font-size: 1rem;
+  font-size: 16px;
+  line-height: 140%; /* 22.4px */
 }
 
 /* Smooth scrolling for anchor links */
@@ -41,11 +42,61 @@ html {
   display: none;
 }
 
-.module-section {
+.module-section-bg {
   background-color: #f8f8f8;
   background-image: url('/assets/images/texture-paper.png');
   background-repeat: repeat;
   background-size: cover;
+}
+
+/* Estándar para todos los organismos del módulo */
+.module-container {
+  width: 100%;
+  margin-left: auto; /* mx-auto */
+  margin-right: auto; /* mx-auto */
+  /* 1024px es ideal para este diseño */
+  border-radius: 16px;
+}
+
+.module-title {
+  text-align: center;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.title {
+  color: var(--color-primary-green);
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Estilo para el contenedor que simula la hoja de papel */
+.sheet-paper-effect {
+  position: relative;
+  background-color: #ffffff; /* Fondo blanco de la hoja */
+  background-image: url('/assets/images/texture-paper.png'); /* Opcional: textura sutil */
+  background-repeat: repeat;
+  background-size: cover;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  overflow: visible; /* Importante para que el rasgado sobresalga si es necesario */
+}
+
+/* El separador rasgado como pseudo-elemento */
+.sheet-paper-effect::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -1px; /* Ajuste para evitar líneas de borde */
+  width: 64px; /* Ancho de tu SVG */
+  background-color: white;
+  /* Usamos el SVG como máscara para el recorte perfecto */
+  mask-image: url("/assets/images/torn-edge-separator.svg"); /* Aquí va tu SVG codificado */
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  z-index: 20;
 }
 
 /* Clase combinada para ambos bordes rasgados amarillos */
@@ -66,23 +117,26 @@ html {
   background-size: 100% auto; 
 }
 
-.title {
-  font-size: 1.5rem;
-  line-height: 2rem;
-  font-weight: 700;
-  color: var(--color-primary-green);
+.module-quiz-title {
+  background-image: url('/assets/images/margin-top-green.png');
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  color: #FFF;
+  text-align: center;
+  font-style: normal;
+
+  padding: 20px 110px 50px 110px;
+  min-height: 100px;
 }
 
-/* Estándar para todos los organismos del módulo */
-.module-container-width {
-   background-image: url('/assets/images/texture-paper.png');
-  width: 100%;
-  max-width: 1024px; /* max-w-5xl */
-  margin-left: auto; /* mx-auto */
-  margin-right: auto; /* mx-auto */
-  padding-left: 1rem; /* px-4 */
-  padding-right: 1rem; /* px-4 */
-  /* 1024px es ideal para este diseño */
+.title-quiz-question {
+  color: var(--color-primary-green);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  padding-right: 80px;
 }
 
 .quiz-card-container {
@@ -95,6 +149,15 @@ html {
   border-color: #f3f4f6; /* border-gray-100 */
   background-color: #fff; /* bg-white */
   min-height: 500px; /* min-h-[500px] */
+}
+
+.fondo-desvanecido-central {
+  /* radial-gradient(forma en el centro, color inicial, color final) */
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 70%);
+  
+  /* Asegúrate de que el contenedor tenga dimensiones */
+  width: 100%;
+  height: 100%;
 }
 
 .module-section-combined {
@@ -136,4 +199,21 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Variante para móvil: el rasgado pasa a estar abajo */
+@media (max-width: 768px) {
+  .sheet-paper-effect::after {
+    top: auto;
+    bottom: -32px;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    transform: rotate(90deg) scaleX(2); /* Rotamos el rasgado para horizontal */
+  }
+
+  .module-quiz-title {
+    padding: 20px 20px 50px 20px;
+  }
 }

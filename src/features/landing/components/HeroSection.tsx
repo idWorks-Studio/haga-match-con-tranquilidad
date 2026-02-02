@@ -17,7 +17,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className = '' }) => {
           // h-[250px] para que no se vea minúscula en móvil
           // md:h-auto para que recupere su proporción en PC
           className="w-full h-[250px] md:h-auto object-cover object-center"
-          sizes="100vw"
           priority
         />
       </div>
@@ -25,7 +24,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className = '' }) => {
       <div className="flex flex-col items-center justify-center w-full mt-8 md:mt-12 space-y-12">
         <div className="relative">
           <div className="bg-[#038450] text-white px-6 py-4 md:py-6 rounded-3xl shadow-md relative">
-            <p className="text-center text-lg md:text-xl font-bold font-italic">
+            <p className="text-center text-lg md:text-xl font-bold italic">
               Tranquilo, <span className="text-[#f4d461]">nosotros le explicamos</span>
             </p>
             {/* Pointed bottom */}

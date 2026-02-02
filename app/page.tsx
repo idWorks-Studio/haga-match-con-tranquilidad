@@ -9,9 +9,11 @@ export default function Home() {
   return (
     <main className="min-h-screen w-full flex flex-col">
       <HeroSection />
-      <Module1Section />
-      <Module2Section />
-      <Module3Section />
+      <div className="container max-w-5xl mx-auto px-4">
+        <Module1Section />
+        <Module2Section />
+        <Module3Section />
+      </div>
       <Footer />
     </main>
   );

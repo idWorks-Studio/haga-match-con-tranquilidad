@@ -52,6 +52,7 @@ export const Module1Section: React.FC<Module1SectionProps> = ({
       <CardModule
         imageSrc="/assets/images/primero-un-diagnostico.png"
         title="¿Situaciones inesperadas?"
+        title_section="Módulo 1"
         description="Responda las siguientes preguntas y haga un diagnóstico de cómo está su relación con la gestión del riesgo."
         onBtnClick={() => setIsModalOpen(true)}
       />
