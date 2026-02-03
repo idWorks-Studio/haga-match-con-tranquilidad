@@ -14,7 +14,7 @@ export const DraggableOption = ({ id, text }: DraggableOptionProps) => {
     <div
       draggable
       onDragStart={onDragStart}
-      className="bg-[#FFD966] text-[#038450] py-2 px-6 rounded-full text-sm md:text-base font-bold cursor-grab active:cursor-grabbing shadow-sm hover:bg-[#ffcc33] transition-colors"
+      className="btn-quiz min-w-[270px] bg-[#FFD966] text-[#038450] rounded-full cursor-grab active:cursor-grabbing shadow-sm hover:bg-[#ffcc33] transition-colors"
     >
       {text}
     </div>

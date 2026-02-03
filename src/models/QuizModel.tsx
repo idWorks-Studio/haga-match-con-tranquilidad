@@ -13,4 +13,5 @@ export interface Question {
   opciones: Option[];
   numRespuestasCorrectas: number;
   respuestasCorrectas: string[];
+  mensajeExitoso?: string;
 }

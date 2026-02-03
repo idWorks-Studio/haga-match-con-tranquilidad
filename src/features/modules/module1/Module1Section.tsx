@@ -32,7 +32,7 @@ export const Module1Section: React.FC<Module1SectionProps> = ({
 
     // Persistencia simple (opcional)
     localStorage.setItem(
-      "scorm_result",
+      "scorm_result_module1",
       JSON.stringify({
         score: data.score,
         status: data.status,
