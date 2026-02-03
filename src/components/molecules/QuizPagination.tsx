@@ -11,7 +11,7 @@ export const QuizPagination = ({ totalSteps, currentStep }: QuizPaginationProps)
       {Array.from({ length: totalSteps }).map((_, index) => (
         <div
           key={index}
-          className={`w-8 h-8 rounded-full transition-colors duration-300 ${
+          className={`circle-pagination rounded-full transition-colors duration-300 ${
             index === currentStep 
               ? "bg-[#038450]" // Verde para la activa
               : "bg-[#FFD966]" // Amarillo para el resto

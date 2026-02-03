@@ -55,7 +55,8 @@ export const QuizModule = ({ className = "", preguntas }: QuizModuleProps) => {
         <div className={`${className}`}>    
             <div className="module-container module-section-bg relative shadow-lg">
                 {/* Feedback Modal (Local a la sección) */}
-                <QuizFeedbackModal 
+                <QuizFeedbackModal
+                    message={preguntaActual.mensajeExitoso}
                     isOpen={modalConfig.isOpen}
                     isCorrect={modalConfig.isCorrect}
                     onContinue={handleModalAction}
@@ -63,15 +64,15 @@ export const QuizModule = ({ className = "", preguntas }: QuizModuleProps) => {
                     
                 {/* Header  */}
                 <div className="module-quiz-title relative rounded-t-lg">
-                    <p dangerouslySetInnerHTML={{ __html: preguntas[currentIndex].introduccion }}></p>
+                    <p dangerouslySetInnerHTML={{ __html: preguntaActual.introduccion }}></p>
                 </div>
 
                 {/* Contenido Principal */}
                 <div className="flex-1 flex flex-col md:flex-row items-center justify-center p-6 gap-10">
                     {/* Personaje */}
-                    <div className="relative w-64 h-80 md:w-80 md:h-[450px]">
+                    <div className="relative w-64 h-80 md:w-80 md:h-[300px]">
                         <Image 
-                            src={`/assets/images/modulo-2/${preguntas[currentIndex].id}.png`} 
+                            src={`/assets/images/modulo-2/${preguntaActual.id}.png`} 
                             alt="Personaje" 
                             fill 
                             className="object-contain" 

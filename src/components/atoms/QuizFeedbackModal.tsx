@@ -3,13 +3,18 @@
 import { Button } from "./Button";
 
 interface FeedbackModalProps {
+  message?: string;
   isOpen: boolean;
   isCorrect: boolean;
   onContinue: () => void;
 }
 
-export const QuizFeedbackModal = ({ isOpen, isCorrect, onContinue }: FeedbackModalProps) => {
+export const QuizFeedbackModal = ({ message = '', isOpen, isCorrect, onContinue }: FeedbackModalProps) => {
   if (!isOpen) return null;
+
+  const feedbackMessage = isCorrect 
+    ? (message ? message : "Has respondido correctamente. ¡Sigue así para asegurar tu tranquilidad!") 
+    : "Repase el contenido y regrese a la actividad.";
 
   return (
     <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 rounded-2xl">
@@ -17,13 +22,12 @@ export const QuizFeedbackModal = ({ isOpen, isCorrect, onContinue }: FeedbackMod
 
         <div className="p-10 text-center flex flex-col items-center">
           <h2 className="text-[#038450] text-4xl font-bold mb-4">
-            {isCorrect ? "¡Muy Bien!" : "¡Inténtalo de nuevo!"}
+            {isCorrect ? "¡Muy Bien!" : "¡Intente de nuevo!"}
           </h2>
-          <p className="text-gray-700 text-lg mb-8">
-            {isCorrect 
-              ? "Has respondido correctamente. ¡Sigue así para asegurar tu tranquilidad!" 
-              : "Parece que algunas opciones no son las correctas. Revisa la situación y vuelve a intentarlo."}
-          </p>
+          
+          <p className="text-gray-700 text-lg mb-8"
+            dangerouslySetInnerHTML={{ __html: feedbackMessage }} 
+          />
           
           <Button onClick={onContinue}>
             {isCorrect ? "Continuar" : "Reintentar"}

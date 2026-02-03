@@ -26,7 +26,7 @@ export const DropZone = ({ onOptionDrop, droppedText }: DropZoneProps) => {
       onDragOver={onDragOver}
       onDragLeave={() => setIsOver(false)}
       onDrop={onDrop}
-      className={`inline-block min-w-[200px] h-10 align-middle mx-2 rounded-full transition-all border-2 
+      className={`drop-opt inline-block min-w-[200px] rounded-full transition-all border-2 
         ${droppedText ? "bg-[#038450] text-white border-[#038450]" : "bg-gray-300 border-transparent"}
         ${isOver && !droppedText ? "scale-105 border-dashed border-[#038450]" : ""}
       `}

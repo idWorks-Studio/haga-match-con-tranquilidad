@@ -19,7 +19,8 @@
           { "id": "f", "texto": "Todas las anteriores" }
         ],
         "numRespuestasCorrectas": 3,
-        "respuestasCorrectas": ["a", "b", "c"]
+        "respuestasCorrectas": ["a", "b", "e"],
+        "mensajeExitoso": "Jorge al igual que usted ya reconocen los 3 pasos importantes para administrar los riesgos<br /><br />Continúa conociendo más historias"
       },
       {
         "id": "p2",
@@ -36,7 +37,8 @@
           { "id": "e", "texto": "Hacer el mercado con descuento" }
         ],
         "numRespuestasCorrectas": 3,
-        "respuestasCorrectas": ["a", "b", "c"]
+        "respuestasCorrectas": ["a", "c", "d"],
+        "mensajeExitoso": "Alejo y tu tienen claro cómo identificar los riesgos que los pueden alejar de su meta, pon en práctica estos tres pasos y haga match con la tranquilidad.<br /><br />Continúa conociendo más historias"
       },
       {
         "id": "p3",
@@ -49,7 +51,8 @@
           { "id": "b", "texto": "Prevenir" }
         ],
         "numRespuestasCorrectas": 1,
-        "respuestasCorrectas": ["a"]
+        "respuestasCorrectas": ["b"],
+        "mensajeExitoso": "Milena y usted tienen claro la diferencia entre Prevenir y Mitigar, ahora están más cerca de tener una vida tranquila.</br /><br />Continúe aprendiendo más sobre la administración del riesgo"
       },
       {
         "id": "p4",
@@ -62,7 +65,8 @@
           { "id": "b", "texto": "Prevenir" }
         ],
         "numRespuestasCorrectas": 1,
-        "respuestasCorrectas": ["a"]
+        "respuestasCorrectas": ["b"],
+        "mensajeExitoso": "Milena y usted tienen claro la diferencia entre Prevenir y Mitigar, ahora están más cerca de tener una vida tranquila.</br /><br />Continúe aprendiendo más sobre la administración del riesgo"
       }
       ,
       {
@@ -76,7 +80,8 @@
           { "id": "b", "texto": "Prevenir" }
         ],
         "numRespuestasCorrectas": 1,
-        "respuestasCorrectas": ["a"]
+        "respuestasCorrectas": ["a"],
+        "mensajeExitoso": "Milena y usted tienen claro la diferencia entre Prevenir y Mitigar, ahora están más cerca de tener una vida tranquila.</br /><br />Continúe aprendiendo más sobre la administración del riesgo"
       },
       {
         "id": "p6",
@@ -90,7 +95,8 @@
           { "id": "opt_2", "texto": "cambiar de trabajo si eso pasa" }
         ],
         "numRespuestasCorrectas": 1,
-        "respuestasCorrectas": ["opt_1"]
+        "respuestasCorrectas": ["opt_1"],
+        "mensajeExitoso": "Juana es consciente de su situación y asume los riesgos que acciones inseguras le puedan generar.<br /><br />Siga conociendo más historias y continúe aprendiendo más sobre la administración de los riesgos"
       },
       {
         "id": "p7",
@@ -104,7 +110,8 @@
           { "id": "opt_2", "texto": "una empresa de servicios" }
         ],
         "numRespuestasCorrectas": 1,
-        "respuestasCorrectas": ["opt_1"]
+        "respuestasCorrectas": ["opt_1"],
+        "mensajeExitoso": "Camilo comparte el riesgo con su compañía de seguros y eso le genera tranquilidad a la hora de tomar decisiones.<br /><br />Si tiene situaciones que pueden ponerlo en riesgo, recuerde que siempre hay herramienta que le permiten compartir el riesgo."
       }
     ]
   }

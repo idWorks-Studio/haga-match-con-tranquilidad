@@ -24,7 +24,7 @@ body {
   font-family: Bolivar, sans-serif;
   text-align: center;
   font-size: 16px;
-  line-height: 140%; /* 22.4px */
+
 }
 
 /* Smooth scrolling for anchor links */
@@ -151,6 +151,29 @@ html {
   min-height: 500px; /* min-h-[500px] */
 }
 
+.btn-quiz {
+  display: flex;
+  padding: 6px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%; /* 16.928px */
+}
+
+.drop-opt {
+  display: flex;
+  width: 270px;
+  height: 30px;
+  padding: 6px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+}
+
 .fondo-desvanecido-central {
   /* radial-gradient(forma en el centro, color inicial, color final) */
   background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 70%);
@@ -160,45 +183,50 @@ html {
   height: 100%;
 }
 
-.module-section-combined {
-  /* El orden es clave: primero el borde (frente), luego la textura (atrás) */
-  background-image: 
-    url('/assets/images/margin-top-green.png'), 
-    url('/assets/images/texture-paper.png');
-
-  background-position: 
-    top center, 
-    center center;
-
-  background-repeat: 
-    no-repeat, 
-    repeat;
-
-  /* El borde se ajusta al ancho, la textura cubre el resto */
-  background-size: 
-    100% auto, 
-    cover;
-
-  background-color: #f8f8f8; /* Color base por si la textura no carga */
+.circle-pagination {
+  width: 21px;
+  height: 21px;
 }
 
 .quiz-footer-container {
   /* Color gris institucional con transparencia (RGBA) */
-  background-color: rgba(221, 221, 221, 0.5);
+  background-color: rgba(221, 221, 221, 0.75);
+  mix-blend-mode: multiply;
   
   /* Efecto de desenfoque para un toque moderno */
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   
   /* Reset de bordes y dimensiones */
-  border: none !important;
   width: 100%;
+  height: 50px;
   margin-top: auto;
   
   /* Alineación vertical */
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.finish-title {
+  color: var(--color-primary-green);
+  /* HEADING 2 */
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%; /* 39.2px */
+}
+
+.finish {
+  background-color: #fff;
+  background-image: url('/assets/images/final.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center;     /* Centrado vertical */
+  height: 430px;
 }
 
 /* Variante para móvil: el rasgado pasa a estar abajo */
@@ -215,5 +243,12 @@ html {
 
   .module-quiz-title {
     padding: 20px 20px 50px 20px;
+  }
+
+  .finish {
+    background-size: contain;
+    display: flex;
+    align-items: center;     /* Centrado vertical */
+    height: auto;
   }
 }

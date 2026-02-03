@@ -32,9 +32,9 @@ export const DragAndDrop = ({
   const parts = currentStepData.enunciado.split("_");
 
   return (
-    <div className="flex-1 max-w-2xl items-center p-6 bg-white rounded-3xl">
+    <div className="flex-1 items-center py-6 px-4 md:px-24 bg-white rounded-3xl">
       <div className="flex flex-col gap-4 mb-10">
-        <p className="text-center font-medium">{currentStepData.contexto}</p>
+        <p className="text-center mb-2">{currentStepData.contexto}</p>
         <div className="flex flex-wrap justify-center gap-3">
             {currentStepData.opciones.map((opt: Option) => (
                 <DraggableOption key={opt.id} id={opt.id} text={opt.texto} />
@@ -42,14 +42,15 @@ export const DragAndDrop = ({
         </div>
       </div>
 
-      <div className="text-lg md:text-xl text-center leading-loose text-gray-800 flex flex-wrap items-center justify-center gap-2">
-        <span>{parts[0]}</span>
+      <div className="text-center flex flex-wrap items-center justify-center gap-2">
+        <p>{parts[0]}</p>
+        <br />
         <DropZone 
           onOptionDrop={handleDrop} 
-          // 3. Usamos el valor derivado
           droppedText={currentStepData.opciones.find((o: Option) => o.id === droppedOptionId)?.texto} 
         />
-        <span>{parts[1]}</span>
+        <br />
+        <p>{parts[1]}</p>
       </div>
     </div>
   );
