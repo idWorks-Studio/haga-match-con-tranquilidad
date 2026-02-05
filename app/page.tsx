@@ -1,9 +1,9 @@
 "use client";
-import { HeroSection } from '@/src/features/landing/components/HeroSection';
-import { Module1Section } from '@/src/features/modules/module1/Module1Section';
-import { Module2Section } from '@/src/features/modules/module2/Module2Section';
-import { Module3Section } from '@/src/features/modules/module3/Module3Section';
-import { Footer } from '@/src/features/landing/components/Footer';
+import { HeroSection } from '@/src/components/atoms/HeroSection';
+import { Module1Section } from '@/src/components/templates/Module1Section';
+import { Module2Section } from '@/src/components/templates/Module2Section';
+import { Module3Section } from '@/src/components/templates/Module3Section';
+import { Footer } from '@/src/components/atoms/Footer';
 
 export default function Home() {
   return (

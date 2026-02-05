@@ -53,4 +53,3 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className = '' }) => {
     </section>
   );
 };
-

@@ -12,40 +12,33 @@ export const Module1Section: React.FC<Module1SectionProps> = ({
   className = "",
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [result, setResult] = useState<"MEDIA" | "BAJA" | "ALTA" | null>(null);
 
-  // Estado real SCORM
-  const [score, setScore] = useState<number | null>(null);
-  const [status, setStatus] = useState<string | null>(null);
+  const handleFinish = (data: any) => {
+    let finalResult = data.result;
 
-  const handleFinish = (data: {
-    score?: number;
-    status?: string;
-    suspendData?: string;
-  }) => {
-    if (data.score !== undefined) {
-      setScore(data.score);
+    // Si el player no detectó el nivel, lo buscamos manualmente aquí
+    if (!finalResult && data.suspendData) {
+      if (data.suspendData.includes("ALTA")) finalResult = "ALTA";
+      else if (data.suspendData.includes("MEDIA")) finalResult = "MEDIA";
+      else if (data.suspendData.includes("BAJA")) finalResult = "BAJA";
     }
 
-    if (data.status) {
-      setStatus(data.status);
+    if (finalResult) {
+      setResult(finalResult); // Esto activará el CardResultsDisplay
     }
+  };
 
-    // Persistencia simple (opcional)
-    localStorage.setItem(
-      "scorm_result_module1",
-      JSON.stringify({
-        score: data.score,
-        status: data.status,
-      })
-    );
+  const handleClose = () => {
+    setIsModalOpen(false);
   };
 
   // DEBUG
   useEffect(() => {
-    if (score !== null || status !== null) {
-      console.log("SCORM RESULT:", { score, status });
+    if (result) {
+      console.log("SCORM RESULT:", { result });
     }
-  }, [score, status]);
+  }, [result]);
 
   return (
     <section id="module1" className={`py-6 md:py-8 ${className}`}>
@@ -59,16 +52,16 @@ export const Module1Section: React.FC<Module1SectionProps> = ({
 
       <ScormPlayer
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={handleClose}
         scormUrl="/scorm/encuesta/story.html"
         onFinish={handleFinish}
       />
 
-      {/* Mostrar resultados solo cuando el curso terminó */}
-      {status && (
+      {/* Mostrar resultados solo cuando el curso terminó y tenemos un resultado */}
+      {result && (
         <CardResultsDisplay
           className="pt-6 md:mt-12"
-          result={score !== null ? score.toString() : "—"}
+          result={result}
           text="De acuerdo a sus respuestas su relación con los riesgos es:"
         />
       )}

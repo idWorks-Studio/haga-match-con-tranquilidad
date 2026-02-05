@@ -1,112 +1,104 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Modal } from "../atoms/Modal";
 import { ScormFrame } from "../molecules/ScormFrame";
 
-declare global {
-  interface Window {
-    API_1484_11?: unknown;
-  }
-}
-
-interface ScormPlayerProps {
-  isOpen: boolean;
-  onClose: () => void;
-  scormUrl: string;
-  onFinish: (data: {
-    score?: number;
-    completed?: boolean;
-    passed?: boolean;
-    suspendData?: string;
-  }) => void;
-}
-
-export const ScormPlayer = ({
-  isOpen,
-  onClose,
-  scormUrl,
-  onFinish,
-}: ScormPlayerProps) => {
+export const ScormPlayer = ({ isOpen, onClose, scormUrl, onFinish }: any) => {
   const scormData = useRef<Record<string, string>>({});
-  const finished = useRef(false);
+  const [isApiReady, setIsApiReady] = useState(false);
 
-  // 👉 Storyline espera strings
-  const OK = "true";
-  const NO_ERROR = "0";
+  const syncToParent = useCallback(() => {
+    // Sacamos una foto actual de TODO lo que haya en scormData
+    const data = scormData.current;
+    console.log("%c[ESTADO ACTUAL DEL SCORM]:", "color: yellow", data);
 
-  const evaluateCompletion = () => {
-    if (finished.current) return;
+    const suspendData = data["cmi.suspend_data"] || "";
 
-    const completion = scormData.current["cmi.completion_status"];
-    const success = scormData.current["cmi.success_status"];
+    // Intentamos deducir el resultado aunque el curso no lo diga explícitamente
+    let detectedResult = null;
+    if (suspendData.includes("ALTA")) detectedResult = "ALTA";
+    else if (suspendData.includes("MEDIA")) detectedResult = "MEDIA";
+    else if (suspendData.includes("BAJA")) detectedResult = "BAJA";
 
-    const completed = completion === "completed";
-    const passed = success === "passed";
-
-    if (completed || passed) {
-      finished.current = true;
-
-      onFinish({
-        score: Number(scormData.current["cmi.score.raw"]),
-        completed,
-        passed,
-        suspendData: scormData.current["cmi.suspend_data"],
-      });
-
-      setTimeout(onClose, 800);
-    }
-  };
-
-  const api2004 = {
-    Initialize: () => OK,
-    Terminate: () => {
-      evaluateCompletion();
-      return OK;
-    },
-    Commit: () => OK,
-
-    GetValue: (key: string) => {
-      return scormData.current[key] ?? "";
-    },
-
-    SetValue: (key: string, value: string) => {
-      console.log("SCORM SET:", key, value);
-      scormData.current[key] = value;
-
-      if (key === "cmi.suspend_data") {
-        onFinish({ suspendData: value });
-      }
-
-      evaluateCompletion();
-      return OK;
-    },
-
-    GetLastError: () => NO_ERROR,
-    GetErrorString: () => "No error",
-    GetDiagnostic: () => "OK",
-  };
+    // Enviamos lo que tengamos, no esperemos a que 'completed' sea true
+    onFinish({
+      score: Number(data["cmi.score.raw"]) || 0,
+      suspendData: suspendData,
+      // @ts-ignore (agregamos el campo result para Module1Section)
+      result: detectedResult
+    });
+  }, [onFinish]);
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) {
+      setIsApiReady(false);
+      return;
+    }
 
-    // 👉 EXPONER API ANTES DEL IFRAME
-    window.API_1484_11 = api2004;
-    window.top!.API_1484_11 = api2004;
+    // 🚩 CONFIGURACIÓN DE EMERGENCIA
+    const api = {
+      Initialize: () => "true",
+      Terminate: () => {
+        syncToParent();
+        return "true";
+      },
+      GetValue: (key: string) => scormData.current[key] || "",
+      SetValue: (key: string, value: string) => {
+        // LOG AGRESIVO: Si esto no sale en consola, el curso NO está conectado
+        console.log(`%c > SCORM RECIBIDO: ${key} = ${value}`, "color: #00ff00; background: #222");
+        scormData.current[key] = value;
+        return "true";
+      },
+      Commit: () => {
+        syncToParent();
+        return "true";
+      },
+      GetLastError: () => "0",
+      GetErrorString: () => "NoError",
+      GetDiagnostic: () => "OK"
+    };
 
-    console.log("SCORM 2004: API ready");
+    // Inyectamos en todos los lugares posibles
+    (window as any).API_1484_11 = api;
+    // @ts-ignore
+    if (typeof window !== "undefined") window.top.API_1484_11 = api;
+
+    // Pequeño truco: Storyline a veces tarda en buscar. 
+    // Le damos 500ms de ventaja a la API antes de mostrar el Iframe.
+    const timer = setTimeout(() => setIsApiReady(true), 500);
+
+    const handleWindowClose = () => {
+      syncToParent();
+    };
+
+    window.addEventListener("beforeunload", handleWindowClose);
+
+    // Sobrescribir window.close
+    const originalClose = window.close;
+    window.close = () => {
+      syncToParent();
+      onClose();
+    };
 
     return () => {
-      delete window.API_1484_11;
+      clearTimeout(timer);
+      window.removeEventListener("beforeunload", handleWindowClose);
+      window.close = originalClose;
+      delete (window as any).API_1484_11;
       scormData.current = {};
-      finished.current = false;
     };
-  }, [isOpen]);
+  }, [isOpen, onClose, syncToParent]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} maxWidth="max-w-5xl w-full">
-      {/* ⚠️ IFRAME SOLO CUANDO API EXISTE */}
-      {isOpen && <ScormFrame src={scormUrl} />}
+      {isApiReady ? (
+        <ScormFrame src={scormUrl} />
+      ) : (
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-8 h-8 border-4 border-[#038450] border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-sm text-gray-500 italic">Estableciendo conexión con el curso...</p>
+        </div>
+      )}
     </Modal>
   );
-
 };
