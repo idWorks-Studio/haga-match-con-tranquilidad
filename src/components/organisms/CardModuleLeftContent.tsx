@@ -22,7 +22,7 @@ export const CardModuleLeftContent = ({
                 <div className="flex flex-col md:flex-row min-h-[450px]">    
                     
                     {/* Left side - Content */}
-                    <div className="flex flex-col justify-center gap-6 p-6 md:p-12 flex-1">
+                    <div className="flex flex-col justify-center gap-6 p-6 md:p-12 flex-1 quiz-question-panel">
                         <div className="text-left">
                             <h2 className="title mb-6">
                                 <span>{title}</span>

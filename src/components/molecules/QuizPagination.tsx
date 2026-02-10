@@ -7,7 +7,7 @@ interface QuizPaginationProps {
 
 export const QuizPagination = ({ totalSteps, currentStep }: QuizPaginationProps) => {
   return (
-    <div className="flex justify-center items-center gap-3 py-6">
+    <div className="flex justify-center items-center gap-3 py-6 quiz-footer-container">
       {Array.from({ length: totalSteps }).map((_, index) => (
         <div
           key={index}
