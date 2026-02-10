@@ -31,6 +31,15 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
     setIsModalOpen(true);
   };
 
+  const handleFinishingQuiz = () => {
+    localStorage.setItem("modulo2", "success");
+    window.dispatchEvent(new Event("modules-progress-updated"));
+    const nextSection = document.getElementById("module3");
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
   return (
     <section id="module2" className={`py-6 md:py-8 ${className}`}>
       <div className="relative pb-10">
@@ -73,7 +82,11 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
       ) : (
         /* PASO B: Quiz (Aparece en el mismo contenedor) */
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <QuizModule className='pt-40 md:pt-44' preguntas={cuestionario.preguntas as Question[]}/>
+          <QuizModule 
+            className='pt-40 md:pt-44' 
+            preguntas={cuestionario.preguntas as Question[]}
+            onFinish={handleFinishingQuiz}
+          />
         </div>
       )}
 

@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { CardModule } from '@/src/components/organisms/CardModule';
 import { ScormPlayer } from '@/src/components/organisms/ScormPlayer';
-import { stat } from "fs";
 
 export interface Module3SectionProps {
   className?: string;
@@ -14,32 +13,47 @@ export const Module3Section: React.FC<Module3SectionProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [status, setStatus] = useState<string | null>(null);
-  
-  const handleFinish = (data: {
-    score?: number;
-    status?: string;
-    suspendData?: string;
-  }) => {  
-    if (data.status) {
-      setStatus(data.status);
-    }
-  
-    // Persistencia simple (opcional)
-    localStorage.setItem(
-      "scorm_result_module3",
-      JSON.stringify({
-        score: data.score,
-        status: data.status,
-      })
+  const [allModulesCompleted, setAllModulesCompleted] = useState(false);
+
+  const checkAllModulesCompleted = () => {
+    if (typeof window === "undefined") return false;
+
+    return (
+      localStorage.getItem("modulo1") === "success" &&
+      localStorage.getItem("modulo2") === "success" &&
+      localStorage.getItem("modulo3") === "success"
     );
   };
+  
+  const handleFinish = () => {  
+    localStorage.setItem("modulo3", "success");
+    window.dispatchEvent(new Event("modules-progress-updated"));
+    setAllModulesCompleted(checkAllModulesCompleted());
+  };
 
-  // DEBUG
-    useEffect(() => {
-      if (status !== null) {
-        console.log("SCORM RESULT:", { status });
-      }
-    }, [status]);
+  useEffect(() => {
+    const updateCompletion = () => {
+      setAllModulesCompleted(checkAllModulesCompleted());
+    };
+
+    updateCompletion();
+    window.addEventListener("modules-progress-updated", updateCompletion);
+    window.addEventListener("storage", updateCompletion);
+
+    return () => {
+      window.removeEventListener("modules-progress-updated", updateCompletion);
+      window.removeEventListener("storage", updateCompletion);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!allModulesCompleted) return;
+
+    const finalSection = document.getElementById("module3-final");
+    if (finalSection) {
+      finalSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [allModulesCompleted]);
 
   return (
     <section id="module3" className={`py-6 md:py-8 ${className}`}>
@@ -58,8 +72,8 @@ export const Module3Section: React.FC<Module3SectionProps> = ({
         onFinish={handleFinish}
       />
 
-      {status === "completed" && (
-        <div className="py-16 md:py-12">
+      {allModulesCompleted && (
+        <div id="module3-final" className="py-16 md:py-12">
           <div className="finish flex flex-col items-center text-center">
             <div className="w-full md:w-[550px] text-center px-8">
               <h2 className="finish-title">Ahora usted está preparado para vivir una vida más tranquila.</h2>
@@ -72,7 +86,7 @@ export const Module3Section: React.FC<Module3SectionProps> = ({
           </div>
         </div>
       )}
-
+      
     </section>
   );
 };

@@ -272,10 +272,27 @@ html {
   }
 
   .finish {
-    background-size: contain;
+    background-image:
+      url('/assets/images/image 6.png'), 
+      url('/assets/images/image 7.png'),
+      url('/assets/images/texture-paper.png');
+    
+    background-position: 
+      top center, 
+      bottom center,
+      center;
+    
+    background-repeat: 
+      no-repeat,
+      no-repeat, 
+      repeat;
+
+    /* Asegúrate de que las imágenes no se estiren de forma extraña */
+    background-size: 100% auto; 
+
     display: flex;
     align-items: center;     /* Centrado vertical */
-    height: auto;
+    border-radius: 16px;
   }
 
   .excelente {

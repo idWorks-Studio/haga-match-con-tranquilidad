@@ -26,6 +26,8 @@ export const Module1Section: React.FC<Module1SectionProps> = ({
 
     if (finalResult) {
       setResult(finalResult); // Esto activará el CardResultsDisplay
+      localStorage.setItem("modulo1", "success");
+      window.dispatchEvent(new Event("modules-progress-updated"));
     }
   };
 

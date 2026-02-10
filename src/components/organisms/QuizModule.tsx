@@ -11,9 +11,10 @@ import { Button } from "../atoms/Button";
 interface QuizModuleProps {
     className?: string;
     preguntas: Question[];
+    onFinish: () => void;
 }
 
-export const QuizModule = ({ className = "", preguntas }: QuizModuleProps) => {
+export const QuizModule = ({ className = "", preguntas, onFinish }: QuizModuleProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
     const [isFinished, setIsFinished] = useState(false);
@@ -54,7 +55,7 @@ export const QuizModule = ({ className = "", preguntas }: QuizModuleProps) => {
     };
 
     const handleFinishSection = () => {
-        
+        onFinish();
     };
 
     return (
