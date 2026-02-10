@@ -32,8 +32,8 @@ export const DragAndDrop = ({
   const parts = currentStepData.enunciado.split("_");
 
   return (
-    <div className="flex-1 items-center py-6 px-4 md:px-24 bg-white rounded-3xl">
-      <div className="flex flex-col gap-4 mb-10">
+    <div className="flex-1 items-center py-6 px-4 md:px-24 rounded-3xl">
+      <div className="flex flex-col gap-4 mb-8">
         <p className="text-center mb-2">{currentStepData.contexto}</p>
         <div className="flex flex-wrap justify-center gap-3">
             {currentStepData.opciones.map((opt: Option) => (

@@ -12,16 +12,16 @@ export const Module1Section: React.FC<Module1SectionProps> = ({
   className = "",
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [result, setResult] = useState<"MEDIA" | "BAJA" | "ALTA" | null>(null);
+  const [result, setResult] = useState<"media" | "baja" | "alta" | null>(null);
 
   const handleFinish = (data: any) => {
     let finalResult = data.result;
 
     // Si el player no detectó el nivel, lo buscamos manualmente aquí
     if (!finalResult && data.suspendData) {
-      if (data.suspendData.includes("ALTA")) finalResult = "ALTA";
-      else if (data.suspendData.includes("MEDIA")) finalResult = "MEDIA";
-      else if (data.suspendData.includes("BAJA")) finalResult = "BAJA";
+      if (data.suspendData.includes("alta")) finalResult = "alta";
+      else if (data.suspendData.includes("media")) finalResult = "media";
+      else if (data.suspendData.includes("baja")) finalResult = "baja";
     }
 
     if (finalResult) {
@@ -32,13 +32,6 @@ export const Module1Section: React.FC<Module1SectionProps> = ({
   const handleClose = () => {
     setIsModalOpen(false);
   };
-
-  // DEBUG
-  useEffect(() => {
-    if (result) {
-      console.log("SCORM RESULT:", { result });
-    }
-  }, [result]);
 
   return (
     <section id="module1" className={`py-6 md:py-8 ${className}`}>
@@ -53,7 +46,7 @@ export const Module1Section: React.FC<Module1SectionProps> = ({
       <ScormPlayer
         isOpen={isModalOpen}
         onClose={handleClose}
-        scormUrl="/scorm/encuesta/story.html"
+        scormUrl="/scorm/encuesta 1/story.html"
         onFinish={handleFinish}
       />
 

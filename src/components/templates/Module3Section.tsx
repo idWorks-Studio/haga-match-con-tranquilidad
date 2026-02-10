@@ -54,7 +54,7 @@ export const Module3Section: React.FC<Module3SectionProps> = ({
       <ScormPlayer
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        scormUrl="/scorm/elija-la-tranquilidad/story.html"
+        scormUrl="/scorm/encuesta 2/story.html"
         onFinish={handleFinish}
       />
 

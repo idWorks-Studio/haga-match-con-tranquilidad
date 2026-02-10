@@ -14,12 +14,11 @@
           { "id": "a", "texto": "Identificar el riesgo y el daño que puede causar" }, 
           { "id": "b", "texto": "Tomar medidas para evitar que suceda o para disminuir su impacto" },
           { "id": "c", "texto": "Transferir todos los riesgos a otras personas o instituciones" },
-          { "id": "d", "texto": "Ignorar el riesgo mientras no ocurra, y reaccionar solo si pasa algo" },
-          { "id": "e", "texto": "Tener presente opciones de respuesta y recuperación para cuando el riesgo se materialice" },
-          { "id": "f", "texto": "Todas las anteriores" }
+          { "id": "d", "texto": "Tener presente opciones de respuesta y recuperación para cuando el riesgo se materialice" },
+          { "id": "e", "texto": "Todas las anteriores" }
         ],
         "numRespuestasCorrectas": 3,
-        "respuestasCorrectas": ["a", "b", "e"],
+        "respuestasCorrectas": ["a", "b", "d"],
         "mensajeExitoso": "Jorge al igual que usted ya reconocen los 3 pasos importantes para administrar los riesgos<br /><br />Continúa conociendo más historias"
       },
       {

@@ -5,7 +5,13 @@ import { ScormFrame } from "../molecules/ScormFrame";
 
 export const ScormPlayer = ({ isOpen, onClose, scormUrl, onFinish }: any) => {
   const scormData = useRef<Record<string, string>>({});
+  const latestResult = useRef<string | null>(null);
+  const onFinishRef = useRef(onFinish);
   const [isApiReady, setIsApiReady] = useState(false);
+
+  useEffect(() => {
+    onFinishRef.current = onFinish;
+  }, [onFinish]);
 
   const syncToParent = useCallback(() => {
     // Sacamos una foto actual de TODO lo que haya en scormData
@@ -15,19 +21,16 @@ export const ScormPlayer = ({ isOpen, onClose, scormUrl, onFinish }: any) => {
     const suspendData = data["cmi.suspend_data"] || "";
 
     // Intentamos deducir el resultado aunque el curso no lo diga explícitamente
-    let detectedResult = null;
-    if (suspendData.includes("ALTA")) detectedResult = "ALTA";
-    else if (suspendData.includes("MEDIA")) detectedResult = "MEDIA";
-    else if (suspendData.includes("BAJA")) detectedResult = "BAJA";
+    const detectedResult = latestResult.current;
 
     // Enviamos lo que tengamos, no esperemos a que 'completed' sea true
-    onFinish({
+    onFinishRef.current({
       score: Number(data["cmi.score.raw"]) || 0,
       suspendData: suspendData,
       // @ts-ignore (agregamos el campo result para Module1Section)
       result: detectedResult
     });
-  }, [onFinish]);
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -73,6 +76,26 @@ export const ScormPlayer = ({ isOpen, onClose, scormUrl, onFinish }: any) => {
 
     window.addEventListener("beforeunload", handleWindowClose);
 
+    const handleMessage = (event: MessageEvent) => {
+      const data = event.data;
+      if (!data || data.tipo !== "calificacion") return;
+
+      const raw = typeof data.valor === "string" ? data.valor : "";
+      const normalized = raw.trim();
+      if (normalized) {
+        latestResult.current = normalized;
+        // Enviamos inmediatamente el resultado al padre
+        onFinishRef.current({
+          score: Number(scormData.current["cmi.score.raw"]) || 0,
+          suspendData: scormData.current["cmi.suspend_data"] || "",
+          // @ts-ignore (agregamos el campo result para Module1Section)
+          result: normalized
+        });
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+
     // Sobrescribir window.close
     const originalClose = window.close;
     window.close = () => {
@@ -83,9 +106,11 @@ export const ScormPlayer = ({ isOpen, onClose, scormUrl, onFinish }: any) => {
     return () => {
       clearTimeout(timer);
       window.removeEventListener("beforeunload", handleWindowClose);
+      window.removeEventListener("message", handleMessage);
       window.close = originalClose;
       delete (window as any).API_1484_11;
       scormData.current = {};
+      latestResult.current = null;
     };
   }, [isOpen, onClose, syncToParent]);
 
