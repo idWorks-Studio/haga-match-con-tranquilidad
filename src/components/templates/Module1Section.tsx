@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { CardModule } from "@/src/components/organisms/CardModule";
 import { CardResultsDisplay } from "@/src/components/organisms/CardResultsDisplay";
 import { ScormPlayer } from "@/src/components/organisms/ScormPlayer";
@@ -48,7 +48,7 @@ export const Module1Section: React.FC<Module1SectionProps> = ({
       <ScormPlayer
         isOpen={isModalOpen}
         onClose={handleClose}
-        scormUrl="/scorm/encuesta 1/story.html"
+        scormUrl="/scorm/encuesta-1/story.html"
         onFinish={handleFinish}
       />
 
