@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CardModule } from "@/src/components/organisms/CardModule";
 import { CardResultsDisplay } from "@/src/components/organisms/CardResultsDisplay";
 import { ScormPlayer } from "@/src/components/organisms/ScormPlayer";
@@ -14,19 +14,44 @@ export const Module1Section: React.FC<Module1SectionProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [result, setResult] = useState<"media" | "baja" | "alta" | null>(null);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const res = sessionStorage.getItem("modulo1");
+    if (!res) return;
+
+    try {
+      const parsedRes = JSON.parse(res);
+      if (parsedRes.finished === "success") {
+        setResult(parsedRes.finalResult);
+      }
+    } catch {
+      // Si no es JSON vÃ¡lido, ignoramos
+    }
+    
+    console.log("Stored result modulo 1:", res);
+  }, []);
+
+
   const handleFinish = (data: any) => {
     let finalResult = data.result;
 
     // Si el player no detectó el nivel, lo buscamos manualmente aquí
     if (!finalResult && data.suspendData) {
-      if (data.suspendData.includes("alta")) finalResult = "alta";
-      else if (data.suspendData.includes("media")) finalResult = "media";
-      else if (data.suspendData.includes("baja")) finalResult = "baja";
+      if (data.suspendData.includes("alta")) finalResult = "Alta";
+      else if (data.suspendData.includes("media")) finalResult = "Media";
+      else if (data.suspendData.includes("baja")) finalResult = "Baja";
     }
 
     if (finalResult) {
       setResult(finalResult); // Esto activará el CardResultsDisplay
-      localStorage.setItem("modulo1", "success");
+      
+      const res = {
+        finished: "success",
+        finalResult: finalResult,
+      };
+
+      sessionStorage.setItem("modulo1", JSON.stringify(res));
       window.dispatchEvent(new Event("modules-progress-updated"));
     }
   };
@@ -63,3 +88,4 @@ export const Module1Section: React.FC<Module1SectionProps> = ({
     </section>
   );
 };
+

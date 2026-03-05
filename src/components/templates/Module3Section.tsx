@@ -11,22 +11,20 @@ export const Module3Section: React.FC<Module3SectionProps> = ({
   className = '' 
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const [status, setStatus] = useState<string | null>(null);
   const [allModulesCompleted, setAllModulesCompleted] = useState(false);
 
   const checkAllModulesCompleted = () => {
     if (typeof window === "undefined") return false;
 
     return (
-      localStorage.getItem("modulo1") === "success" &&
-      localStorage.getItem("modulo2") === "success" &&
-      localStorage.getItem("modulo3") === "success"
+      sessionStorage.getItem("modulo1") === "success" &&
+      sessionStorage.getItem("modulo2") === "success" &&
+      sessionStorage.getItem("modulo3") === "success"
     );
   };
   
   const handleFinish = () => {  
-    localStorage.setItem("modulo3", "success");
+    sessionStorage.setItem("modulo3", "success");
     window.dispatchEvent(new Event("modules-progress-updated"));
     setAllModulesCompleted(checkAllModulesCompleted());
   };
@@ -47,6 +45,7 @@ export const Module3Section: React.FC<Module3SectionProps> = ({
   }, []);
 
   useEffect(() => {
+    console.log("All modules completed:", allModulesCompleted);
     if (!allModulesCompleted) return;
 
     const finalSection = document.getElementById("module3-final");
@@ -61,7 +60,7 @@ export const Module3Section: React.FC<Module3SectionProps> = ({
         imageSrc='/assets/images/descubra.png'
         title='¡Elija la tranquilidad!'
         title_section='Módulo 3'
-        description='Evite los riesgos y tome decisiones más seguras!' 
+        description='Evite los riesgos y tome decisiones más seguras.' 
         onBtnClick={() => setIsModalOpen(true)}
       />
 
@@ -90,4 +89,5 @@ export const Module3Section: React.FC<Module3SectionProps> = ({
     </section>
   );
 };
+
 

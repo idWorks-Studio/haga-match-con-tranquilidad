@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { MultipleChoiceGroup } from "../molecules/MultipleChoiceGroup";
 import { QuizPagination } from "../molecules/QuizPagination";
@@ -18,6 +18,26 @@ export const QuizModule = ({ className = "", preguntas, onFinish }: QuizModulePr
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
     const [isFinished, setIsFinished] = useState(false);
+    const [wasCompleted, setWasCompleted] = useState(false);
+
+    useEffect(() => {
+        const updateCompletion = () => {
+            const completed = typeof window !== "undefined" && sessionStorage.getItem("modulo2") === "success";
+            setWasCompleted(completed);
+            if (completed) {
+                setIsFinished(true);
+            }
+        };
+
+        updateCompletion();
+        window.addEventListener("modules-progress-updated", updateCompletion);
+        window.addEventListener("storage", updateCompletion);
+
+        return () => {
+            window.removeEventListener("modules-progress-updated", updateCompletion);
+            window.removeEventListener("storage", updateCompletion);
+        };
+    }, []);
 
     // Estado para controlar el Modal
     const [modalConfig, setModalConfig] = useState({
@@ -60,111 +80,114 @@ export const QuizModule = ({ className = "", preguntas, onFinish }: QuizModulePr
 
     return (
         <div className={`${className}`}>    
-            {!isFinished && (
-            <div className="module-container module-section-bg relative shadow-lg min-h-[600px] flex flex-col">
-                {/* Feedback Modal (Local a la sección) */}
-                <QuizFeedbackModal
-                    message={preguntaActual.mensajeExitoso}
-                    isOpen={modalConfig.isOpen}
-                    isCorrect={modalConfig.isCorrect}
-                    onContinue={handleModalAction}
-                />
-                    
-                {/* Header  */}
-                <div className="module-quiz-title relative">
-                    <p dangerouslySetInnerHTML={{ __html: preguntaActual.introduccion }}></p>
-                </div>
-
-                {/* Contenido Principal */}
-                <div className="flex flex-col md:flex-row items-center justify-center p-2 gap-10">
-                    {/* Personaje */}
-                    <div className="quiz-figure relative">
-                        <Image 
-                            src={`/assets/images/modulo-2/${preguntaActual.id}.png`} 
-                            alt="Personaje" 
-                            fill 
-                            className="object-contain" 
-                        />
+            {!isFinished && !wasCompleted && (
+                <div className="module-container module-section-bg relative shadow-lg h-auto md:min-h-[530px] flex flex-col">
+                    {/* Feedback Modal (Local a la sección) */}
+                    <QuizFeedbackModal
+                        message={preguntaActual.mensajeExitoso}
+                        isOpen={modalConfig.isOpen}
+                        isCorrect={modalConfig.isCorrect}
+                        onContinue={handleModalAction}
+                    />
+                        
+                    {/* Header  */}
+                    <div className="module-quiz-title relative">
+                        <p dangerouslySetInnerHTML={{ __html: preguntaActual.introduccion }}></p>
                     </div>
-                    {/* Pregunta y Opciones */}
-                    <div className="quiz-question-panel">
-                        {preguntaActual.tipo === "drag-and-drop" ? (
-                            <DragAndDrop 
-                                currentStepData={preguntaActual}
-                                selectedIds={selectedIds}
-                                onSelectionChange={setSelectedIds}
-                                onComplete={handleValidateAnswer} 
+
+                    {/* Contenido Principal */}
+                    <div className="flex flex-col md:flex-row items-center justify-center p-2 gap-10">
+                        {/* Personaje */}
+                        <div className="quiz-figure relative">
+                            <Image 
+                                src={`/assets/images/modulo-2/${preguntaActual.id}.png`} 
+                                alt="Personaje" 
+                                fill 
+                                className="object-contain" 
                             />
-                        ) : (
-                            <div className="quiz-question-inner">
-                                <div className="text-left">
-                                    <h2 className="title-quiz-question">
-                                        { preguntaActual.enunciado }
-                                    </h2>
-                                    <p className="text-gray-600 mb-6">
-                                        { preguntaActual.contexto }
-                                    </p>
-                                </div>
-                                <MultipleChoiceGroup    
-                                    options={preguntaActual.opciones}
+                        </div>
+                        {/* Pregunta y Opciones */}
+                        {preguntaActual.tipo === "drag-and-drop" ? (
+                            <div className="quiz-question-panel max-w-[30rem]">
+                                <DragAndDrop 
+                                    currentStepData={preguntaActual}
                                     selectedIds={selectedIds}
-                                    maxSelections={preguntaActual.numRespuestasCorrectas}
                                     onSelectionChange={setSelectedIds}
-                                    onComplete={handleValidateAnswer}
+                                    onComplete={handleValidateAnswer} 
                                 />
                             </div>
-                        )} 
+                        ) : (
+                            <div className="quiz-question-panel">
+                                <div className="quiz-question-inner">
+                                    <div className="text-left pl-4">
+                                        <h2 className="title-quiz-question pr-6">
+                                            { preguntaActual.enunciado }
+                                        </h2>
+                                        <p className="text-gray-600 mb-6">
+                                            { preguntaActual.contexto }
+                                        </p>
+                                    </div>
+                                    <MultipleChoiceGroup    
+                                        options={preguntaActual.opciones}
+                                        selectedIds={selectedIds}
+                                        maxSelections={preguntaActual.numRespuestasCorrectas}
+                                        onSelectionChange={setSelectedIds}
+                                        onComplete={handleValidateAnswer}
+                                    />
+                                </div>
+                            </div>
+                        )}  
                     </div>
-                </div>
 
-                {/* Footer con Paginación */}
-                <footer className="flex justify-end">
-                    <QuizPagination 
-                        totalSteps={preguntas.length} 
-                        currentStep={currentIndex}
-                    />
-                </footer>
-            </div>
+                    {/* Footer con Paginación */}
+                    <footer className="flex justify-end">
+                        <QuizPagination 
+                            totalSteps={preguntas.length} 
+                            currentStep={currentIndex}
+                        />
+                    </footer>
+                </div>
             )}
 
-            {isFinished && (
-            <div className="excelente relative module-container shadow-lg min-h-[600px] overflow-hidden">
-                {/* Contenedor Principal: Eliminamos padding horizontal para que la imagen toque el borde */}
-                <div className="flex flex-col md:flex-row items-stretch justify-center gap-0 md:gap-10">
-                    
-                    {/* Contenedor de Imagen: 
-                        - 'hidden md:block' hace que no se vea en mobile y aparezca en desktop.
-                        - 'relative' es necesario para el componente Image con 'fill'.
-                    */}
-                    <div className="hidden md:block relative w-[60%] min-h-[640px]">
-                        <Image
-                            src="/assets/images/excelente.png" 
-                            alt="Personaje" 
-                            fill
-                            className="object-contain"
-                            priority
-                        />
-                    </div>
-                    
-                    {/* Contenedor de Texto */}
-                    <div className="flex flex-col justify-center items-start gap-6 p-8 md:p-12 w-full md:w-1/2">
-                        <div className="text-left">
-                            <h2 className="title-quiz-question mb-6">
-                                ¡EXCELENTE!
-                            </h2>
-                            <p className="text-base text-gray-700 leading-[1.4] mr-0 md:mr-20 mb-4">
-                                Usted ya sabe cómo administrar y tener mayor control sobre los riesgos.
-                                <br /><br />
-                                Lo invitamos a que continúe explorando el módulo 3, el cual le ayudará a elegir herramientas que le ayudarán a tener una vida más tranquila.
-                            </p>
+            {(isFinished || wasCompleted) && (
+                <div className="excelente relative module-container shadow-lg h-auto md:min-h-[530px] overflow-hidden">
+                    {/* Contenedor Principal: Eliminamos padding horizontal para que la imagen toque el borde */}
+                    <div className="flex flex-col md:flex-row items-stretch justify-center gap-0 md:gap-10">
+                        
+                        {/* Contenedor de Imagen: 
+                            - 'hidden md:block' hace que no se vea en mobile y aparezca en desktop.
+                            - 'relative' es necesario para el componente Image con 'fill'.
+                        */}
+                        <div className="hidden md:block relative w-[60%] h-auto md:min-h-[600px]">
+                            <Image
+                                src="/assets/images/excelente.png" 
+                                alt="Personaje" 
+                                fill
+                                className="object-contain"
+                                priority
+                            />
                         </div>
-                        <div>
-                            <Button onClick={handleFinishSection}>Continuar</Button>
+                        
+                        {/* Contenedor de Texto */}
+                        <div className="flex flex-col justify-center items-start gap-6 p-8 md:p-12 w-full md:w-1/2">
+                            <div className="text-left">
+                                <h2 className="title-quiz-question mb-6">
+                                    ¡EXCELENTE!
+                                </h2>
+                                <p className="text-base text-gray-700 leading-[1.4] mr-0 md:mr-20 mb-4">
+                                    Usted ya sabe cómo administrar y tener mayor control sobre los riesgos.
+                                    <br /><br />
+                                    Lo invitamos a que continúe explorando el módulo 3, el cual le ayudará a elegir herramientas que le ayudarán a tener una vida más tranquila.
+                                </p>
+                            </div>
+                            <div>
+                                <Button onClick={handleFinishSection}>Continuar</Button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             )}
         </div>
     );
 };
+

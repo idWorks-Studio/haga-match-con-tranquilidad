@@ -4,7 +4,7 @@ import React from 'react';
 export interface CardResultsDisplayProps {
   className?: string;
   text?: string;
-  result?: "media" | "BAJA" | "alta" | string;
+  result?: "Media" | "Baja" | "Alta" | string;
 }
 
 export const CardResultsDisplay: React.FC<CardResultsDisplayProps> = ({ 
@@ -14,13 +14,13 @@ export const CardResultsDisplay: React.FC<CardResultsDisplayProps> = ({
 
   // Definición de colores
   const colors = {
-    alta: "#DC2423",
-    media: "#EAA300",
-    baja: "#008E56",
+    Alta: "#DC2423",
+    Media: "#EAA300",
+    Baja: "#008E56",
     default: "#fffff"
   };
 
-  const background = (result === "alta" || result === "media" || result === "baja") 
+  const background = (result === "Alta" || result === "Media" || result === "Baja") 
     ? colors[result] 
     : colors.default;
 
@@ -43,7 +43,7 @@ export const CardResultsDisplay: React.FC<CardResultsDisplayProps> = ({
               style={{ backgroundColor: background }}>
               <div className="text-center flex flex-col justify-center items-center h-full px-4">
                 <div className="text-[#ffffff] text-7xl md:text-[80px] font-bold leading-none tracking-tight">
-                  {result?.toUpperCase()}
+                  {result}
                 </div>
               </div>
             </div>

@@ -23,6 +23,8 @@ body {
   color: var(--foreground);
   font-family: Bolivar, sans-serif;
   text-align: center;
+  font-style: normal;
+  font-weight: 600;
   font-size: 16px;
 }
 
@@ -120,13 +122,13 @@ html {
 .quiz-figure {
   width: 35%;
   min-width: 35%;
-  height: 420px;
+  height: 350px;
   flex: 0 0 35%;
 }
 
 .quiz-question-panel {
   width: 100%;
-  max-width: 42rem; /* matches max-w-2xl */
+  /*max-width: 42rem;*/ /* matches max-w-2xl */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,7 +144,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-right: 80px;
+  padding-right: 10px;
 }
 
 .quiz-card-container {
@@ -163,6 +165,8 @@ html {
   justify-content: center;
   align-items: center;
   gap: 7px;
+
+  border-radius: 30px;
 
   font-size: 12px;
   font-style: normal;
