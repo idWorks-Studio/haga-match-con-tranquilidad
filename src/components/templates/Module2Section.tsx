@@ -32,7 +32,7 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
   };
 
   const handleFinishingQuiz = () => {
-    localStorage.setItem("modulo2", "success");
+    sessionStorage.setItem("modulo2", "success");
     window.dispatchEvent(new Event("modules-progress-updated"));
     const nextSection = document.getElementById("module3");
     if (nextSection) {
@@ -48,10 +48,10 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
           {/* Texto alineado a la izquierda con menos margen inferior (mb-6) */}
           <div className="text-center mb-6">
             <h2 className="title m-4">
-              ¿Sabe como elegir la opción ideal para su tranquilidad?
+              ¿Sabe cómo elegir la opción ideal para su tranquilidad?
             </h2>
             <p className="text-base text-gray-700 leading-[1.4]">
-              Haga clíc en cada vídeo y descubra cómo otros aprendieron a identificar y administrar el riesgo.
+              Haga clic en cada video y descubra cómo otros aprendieron a identificar y administrar el riesgo.
             </p>
           </div>
 
@@ -83,7 +83,7 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
         /* PASO B: Quiz (Aparece en el mismo contenedor) */
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
           <QuizModule 
-            className='pt-40 md:pt-44' 
+            className='pt-40 md:pt-44'
             preguntas={cuestionario.preguntas as Question[]}
             onFinish={handleFinishingQuiz}
           />
@@ -101,3 +101,4 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
     </section>
   );
 };
+

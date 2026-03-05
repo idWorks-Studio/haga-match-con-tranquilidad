@@ -9,7 +9,7 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
     <footer className={`bg-[#038450] text-white py-6 ${className}`}>
       <div className="container mx-auto px-4">
         <p className="text-center text-sm md:text-base">
-          Seguros Bolívar 2024
+          Seguros Bolívar 2026
         </p>
       </div>
     </footer>

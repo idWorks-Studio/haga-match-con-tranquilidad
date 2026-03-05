@@ -5,7 +5,7 @@
     "preguntas": [
       {
         "id": "p1",
-        "introduccion": "<b>En el video anterior Jorge supo administrar el riesgo y evitar un impacto mayor en su cultivo, incrementando así las probabilidades de vivir con tranquilidad",
+        "introduccion": "<b>En el video anterior Jorge supo administrar el riesgo y evitar un impacto mayor en su cultivo, incrementando así las probabilidades de vivir con tranquilidad.",
         "imagen": "",
         "contexto": "Seleccione las respuestas correctas",
         "enunciado": "¿Cuáles son los 3 pasos para administrar un riesgo?",
@@ -13,7 +13,7 @@
         "opciones": [
           { "id": "a", "texto": "Identificar el riesgo y el daño que puede causar" }, 
           { "id": "b", "texto": "Tomar medidas para evitar que suceda o para disminuir su impacto" },
-          { "id": "c", "texto": "Transferir todos los riesgos a otras personas o instituciones" },
+          { "id": "c", "texto": "Delegar totalmente el riesgo a otros" },
           { "id": "d", "texto": "Tener presente opciones de respuesta y recuperación para cuando el riesgo se materialice" },
           { "id": "e", "texto": "Todas las anteriores" }
         ],
@@ -23,7 +23,7 @@
       },
       {
         "id": "p2",
-        "introduccion": "<b>En el caso anterior Alejo supo identificar el riesgo, ahora le toca a usted</b><br />Responda de forma correcta a la siguiente actividad",
+        "introduccion": "<b>En el caso anterior Alejo supo identificar el riesgo, ahora le toca a usted</b><br />Responda de forma correcta a la siguiente actividad.",
         "imagen": "",
         "contexto": "Seleccione 3 situaciones que representan un riesgo real y que no le permitirían alcanzar esta meta.",
         "enunciado": "Alejo tiene una meta clara, comprar una casa para su familia.",

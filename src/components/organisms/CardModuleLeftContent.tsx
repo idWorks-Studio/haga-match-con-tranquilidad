@@ -17,9 +17,9 @@ export const CardModuleLeftContent = ({
     onStart 
 }: CardModuleLeftContentProps) => {
     return (
-        <div className={`${className}`}>
+        <div className={className}>
             <div className="module-container module-section-bg shadow-lg overflow-hidden">
-                <div className="flex flex-col md:flex-row min-h-[450px]">    
+                <div className="flex flex-col md:flex-row h-auto md:h-[530px]">    
                     
                     {/* Left side - Content */}
                     <div className="flex flex-col justify-center gap-6 p-6 md:p-12 flex-1 quiz-question-panel">
