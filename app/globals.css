@@ -101,11 +101,17 @@ html {
   text-align: center;
   font-style: normal;
 
-  padding: 20px 110px 50px 110px;
+  padding: 18px 110px 52px 110px;
   min-height: 100px;
 
   border-top-right-radius: 16px;
   border-top-left-radius: 16px;
+}
+
+.module-quiz-title p {
+  margin: 0 auto;
+  max-width: 695px;
+  line-height: 1.4;
 }
 
 .title-quiz-question {
@@ -121,23 +127,25 @@ html {
 }
 
 .quiz-figure {
-  height: 382px;
-  flex: 0 0 35%;
+  width: 239px;
+  height: 387px;
+  flex: 0 0 239px;
 }
 
 .quiz-figure-drop {
-  width: 35%;
+  width: 239px;
   height: 355px;
-  flex: 0 0 35%;
+  flex: 0 0 239px;
 }
 
 .quiz-question-panel {
   width: 100%;
-  /*max-width: 42rem;*/ /* matches max-w-2xl */
+  max-width: 529px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow-y: auto;
+  /* background: transparent; */
   background: radial-gradient(circle at center, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 35%, rgba(255, 255, 255, 0) 100%);
 }
 
@@ -145,11 +153,16 @@ html {
   width: 100%;
 }
 
+.quiz-question-panel--drag {
+  max-width: 529px;
+}
+
 .quiz-question-inner {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-right: 10px;
+  gap: 8px;
+  padding-right: 0;
 }
 
 .quiz-card-container {
@@ -181,12 +194,49 @@ html {
 
 .drop-opt {
   display: flex;
-  width: 270px;
-  height: 30px;
+  width: 278px;
+  height: 29px;
   padding: 6px 12px;
   justify-content: center;
   align-items: center;
   gap: 7px;
+}
+
+.quiz-dnd {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+}
+
+.quiz-dnd-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.quiz-dnd-context {
+  max-width: 324px;
+}
+
+.quiz-dnd-pill-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.quiz-dnd-sentence {
+  width: 529px;
+  /* background: rgba(255, 255, 255, 0.65); */
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 }
 
 .circle-pagination {
@@ -270,7 +320,7 @@ html {
     min-height: 600px;
   }
 
-  .quiz-figure 
+  .quiz-figure,
   .quiz-figure-drop {
     width: 100%;
     min-width: 100%;
@@ -279,6 +329,11 @@ html {
 
   .quiz-question-panel {
     height: auto;
+    max-width: 100%;
+  }
+
+  .quiz-dnd-sentence {
+    width: 100%;
   }
 
   .finish {

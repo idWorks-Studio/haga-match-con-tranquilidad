@@ -14,7 +14,7 @@ export const DraggableOption = ({ id, text }: DraggableOptionProps) => {
     <div
       draggable
       onDragStart={onDragStart}
-      className="btn-quiz min-w-[270px] bg-[#FFD966] text-[#038450] rounded-full cursor-grab active:cursor-grabbing shadow-sm hover:bg-[#ffcc33] transition-colors"
+      className="btn-quiz min-w-[278px] bg-[#FFD966] text-[#038450] rounded-full cursor-grab active:cursor-grabbing shadow-sm hover:bg-[#ffcc33] transition-colors"
     >
       {text}
     </div>
