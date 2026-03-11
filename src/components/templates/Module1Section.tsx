@@ -38,9 +38,9 @@ export const Module1Section: React.FC<Module1SectionProps> = ({
 
     // Si el player no detectó el nivel, lo buscamos manualmente aquí
     if (!finalResult && data.suspendData) {
-      if (data.suspendData.includes("alta")) finalResult = "Alta";
-      else if (data.suspendData.includes("media")) finalResult = "Media";
-      else if (data.suspendData.includes("baja")) finalResult = "Baja";
+      if (data.suspendData.includes("alta")) finalResult = "alta";
+      else if (data.suspendData.includes("media")) finalResult = "media";
+      else if (data.suspendData.includes("baja")) finalResult = "baja";
     }
 
     if (finalResult) {

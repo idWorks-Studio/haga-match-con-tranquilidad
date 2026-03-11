@@ -36,7 +36,7 @@
           { "id": "e", "texto": "Hacer el mercado con descuento" }
         ],
         "numRespuestasCorrectas": 3,
-        "respuestasCorrectas": ["a", "c", "d"],
+        "respuestasCorrectas": ["a", "b", "d"],
         "mensajeExitoso": "Alejo y tu tienen claro cómo identificar los riesgos que los pueden alejar de su meta, pon en práctica estos tres pasos y haga match con la tranquilidad.<br /><br />Continúa conociendo más historias"
       },
       {
