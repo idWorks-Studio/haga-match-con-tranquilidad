@@ -113,6 +113,7 @@ html {
   font-size: 28px;
   font-style: normal;
   font-weight: 700;
+  line-height: 120%; /* 33.6px */
 }
 
 .quiz-stage {
@@ -120,9 +121,13 @@ html {
 }
 
 .quiz-figure {
+  height: 382px;
+  flex: 0 0 35%;
+}
+
+.quiz-figure-drop {
   width: 35%;
-  min-width: 35%;
-  height: 350px;
+  height: 355px;
   flex: 0 0 35%;
 }
 
@@ -265,7 +270,8 @@ html {
     min-height: 600px;
   }
 
-  .quiz-figure {
+  .quiz-figure 
+  .quiz-figure-drop {
     width: 100%;
     min-width: 100%;
     height: auto;
