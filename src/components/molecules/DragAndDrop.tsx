@@ -32,24 +32,22 @@ export const DragAndDrop = ({
   const parts = currentStepData.enunciado.split("_");
 
   return (
-    <div className="flex-1 items-center py-6 px-4 md:px-24 rounded-3xl">
-      <div className="flex flex-col gap-4 mb-8">
-        <p className="text-center mb-2">{currentStepData.contexto}</p>
-        <div className="flex flex-wrap justify-center gap-3">
-            {currentStepData.opciones.map((opt: Option) => (
-                <DraggableOption key={opt.id} id={opt.id} text={opt.texto} />
-            ))}
+    <div className="quiz-dnd">
+      <div className="quiz-dnd-options">
+        <p className="quiz-dnd-context">{currentStepData.contexto}</p>
+        <div className="quiz-dnd-pill-group">
+          {currentStepData.opciones.map((opt: Option) => (
+            <DraggableOption key={opt.id} id={opt.id} text={opt.texto} />
+          ))}
         </div>
       </div>
 
-      <div className="text-center flex flex-wrap items-center justify-center gap-2">
+      <div className="quiz-dnd-sentence">
         <p>{parts[0]}</p>
-        <br />
-        <DropZone 
-          onOptionDrop={handleDrop} 
-          droppedText={currentStepData.opciones.find((o: Option) => o.id === droppedOptionId)?.texto} 
+        <DropZone
+          onOptionDrop={handleDrop}
+          droppedText={currentStepData.opciones.find((o: Option) => o.id === droppedOptionId)?.texto}
         />
-        <br />
         <p>{parts[1]}</p>
       </div>
     </div>

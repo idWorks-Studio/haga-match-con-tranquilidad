@@ -45,6 +45,7 @@ export const QuizModule = ({ className = "", preguntas, onFinish }: QuizModulePr
     });
 
     const preguntaActual = preguntas[currentIndex] as Question;
+    const hasImage = Boolean(preguntaActual.imagen);
     const showSuccess = isFinished || wasCompleted;
 
     const handleValidateAnswer = (respuestasUsuario: string[]) => {
@@ -98,18 +99,24 @@ export const QuizModule = ({ className = "", preguntas, onFinish }: QuizModulePr
                             <p dangerouslySetInnerHTML={{ __html: preguntaActual.introduccion }}></p>
                         </div>
 
-                        <div className="flex flex-1 flex-col md:flex-row items-center justify-center p-2 gap-10 min-h-0">
-                            <div className={`${preguntaActual.tipo === "drag-and-drop" ? 'quiz-figure-drop' : 'quiz-figure'} relative`}>
-                                <Image
-                                    src={`/assets/images/modulo-2/${preguntaActual.id}.png`}
-                                    alt="Personaje"
-                                    fill
-                                    className="object-contain object-center"
-                                />
-                            </div>
+                        <div
+                            className={`flex flex-1 flex-col items-center justify-center p-2 min-h-0 ${
+                                hasImage ? "md:flex-row md:gap-10" : "md:flex-col md:gap-6"
+                            }`}
+                        >
+                            {hasImage && (
+                                <div className={`${preguntaActual.tipo === "drag-and-drop" ? "quiz-figure-drop" : "quiz-figure"} relative`}>
+                                    <Image
+                                        src={preguntaActual.imagen}
+                                        alt="Personaje"
+                                        fill
+                                        className="object-contain object-center"
+                                    />
+                                </div>
+                            )}
 
                             {preguntaActual.tipo === "drag-and-drop" ? (
-                                <div className="quiz-question-panel max-w-[30rem]">
+                                <div className="quiz-question-panel quiz-question-panel--drag">
                                     <DragAndDrop
                                         currentStepData={preguntaActual}
                                         selectedIds={selectedIds}
@@ -120,11 +127,11 @@ export const QuizModule = ({ className = "", preguntas, onFinish }: QuizModulePr
                             ) : (
                                 <div className="quiz-question-panel">
                                     <div className="quiz-question-inner">
-                                        <div className="text-left md:w-[450px]">
+                                        <div className="text-left md:w-[447px]">
                                             <h2 className="title-quiz-question">
                                                 {preguntaActual.enunciado}
                                             </h2>
-                                            <p className="text-gray-600 mb-6">
+                                            <p className="text-black leading-[1.4] mb-4">
                                                 {preguntaActual.contexto}
                                             </p>
                                         </div>

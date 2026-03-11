@@ -27,11 +27,11 @@ export const DropZone = ({ onOptionDrop, droppedText }: DropZoneProps) => {
       onDragLeave={() => setIsOver(false)}
       onDrop={onDrop}
       className={`drop-opt inline-block min-w-[200px] rounded-full transition-all border-2 
-        ${droppedText ? "bg-[#038450] text-white border-[#038450]" : "bg-gray-300 border-transparent"}
+        ${droppedText ? "bg-[#038450] text-white border-[#038450]" : "bg-[#d7d7d7] border-transparent"}
         ${isOver && !droppedText ? "scale-105 border-dashed border-[#038450]" : ""}
       `}
     >
-      <span className="flex items-center justify-center h-full text-sm font-bold px-4">
+      <span className="flex items-center justify-center h-full text-[12px] font-bold px-4">
         {droppedText || ""}
       </span>
     </div>
