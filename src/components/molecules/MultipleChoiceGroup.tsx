@@ -38,7 +38,7 @@ export const MultipleChoiceGroup = ({
   };
 
   return (
-    <div className="flex flex-col gap-[7.5px] w-full items-center">
+    <div className="flex flex-col gap-[7.5px] w-full">
       {options.map((opt) => (
         <QuizOption
           key={opt.id}
