@@ -99,12 +99,12 @@ export const QuizModule = ({ className = "", preguntas, onFinish }: QuizModulePr
                         </div>
 
                         <div className="flex flex-1 flex-col md:flex-row items-center justify-center p-2 gap-10 min-h-0">
-                            <div className="quiz-figure relative">
+                            <div className={`${preguntaActual.tipo === "drag-and-drop" ? 'quiz-figure-drop' : 'quiz-figure'} relative`}>
                                 <Image
                                     src={`/assets/images/modulo-2/${preguntaActual.id}.png`}
                                     alt="Personaje"
                                     fill
-                                    className="object-contain"
+                                    className="object-contain object-center"
                                 />
                             </div>
 
@@ -120,8 +120,8 @@ export const QuizModule = ({ className = "", preguntas, onFinish }: QuizModulePr
                             ) : (
                                 <div className="quiz-question-panel">
                                     <div className="quiz-question-inner">
-                                        <div className="text-left pl-4">
-                                            <h2 className="title-quiz-question pr-6">
+                                        <div className="text-left md:w-[450px]">
+                                            <h2 className="title-quiz-question">
                                                 {preguntaActual.enunciado}
                                             </h2>
                                             <p className="text-gray-600 mb-6">

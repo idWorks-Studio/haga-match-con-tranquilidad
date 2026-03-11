@@ -14,7 +14,7 @@
           { "id": "a", "texto": "Identificar el riesgo y el daño que puede causar" }, 
           { "id": "b", "texto": "Tomar medidas para evitar que suceda o para disminuir su impacto" },
           { "id": "c", "texto": "Delegar totalmente el riesgo a otros" },
-          { "id": "d", "texto": "Tener presente opciones de respuesta y recuperación para cuando el riesgo se materialice" },
+          { "id": "d", "texto": "Tener opciones de respuesta y recuperación para cuando el riesgo se materialice" },
           { "id": "e", "texto": "Todas las anteriores" }
         ],
         "numRespuestasCorrectas": 3,
@@ -32,11 +32,11 @@
           { "id": "a", "texto": "Perder el empleo que me permite ahorrar" },
           { "id": "b", "texto": "Confiar los ahorros a una persona sin respaldo legal" },
           { "id": "c", "texto": "Aumentos inesperados en tasas de interés del crédito" },
-          { "id": "d", "texto": "Comer fuera una vez al mes" },
+          { "id": "d", "texto": "Pedir comida a domicilio únicamente cuando hay promociones" },
           { "id": "e", "texto": "Hacer el mercado con descuento" }
         ],
         "numRespuestasCorrectas": 3,
-        "respuestasCorrectas": ["a", "b", "d"],
+        "respuestasCorrectas": ["a", "b", "c"],
         "mensajeExitoso": "Alejo y tu tienen claro cómo identificar los riesgos que los pueden alejar de su meta, pon en práctica estos tres pasos y haga match con la tranquilidad.<br /><br />Continúa conociendo más historias"
       },
       {
