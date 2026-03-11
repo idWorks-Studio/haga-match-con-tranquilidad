@@ -19,7 +19,7 @@ export const CardModuleLeftContent = ({
     return (
         <div className={className}>
             <div className="module-container module-section-bg shadow-lg overflow-hidden">
-                <div className="flex flex-col md:flex-row h-auto md:h-[530px]">    
+                <div className="flex flex-col md:flex-row h-auto md:h-[550px]">    
                     
                     {/* Left side - Content */}
                     <div className="flex flex-col justify-center gap-6 p-6 md:p-12 flex-1 quiz-question-panel">
@@ -37,7 +37,7 @@ export const CardModuleLeftContent = ({
                     </div>
             
                     {/* Lado Derecho - Ilustración */}
-                    <div className="relative w-full md:w-[500px] h-[535px] md:h-auto flex-shrink-0 overflow-hidden">
+                    <div className="relative w-full md:w-[500px] h-[320px] md:h-full flex-shrink-0 overflow-hidden">
                         <Image src={imageSrc} fill className="object-cover" alt="Illustration" />
                     </div>
             
