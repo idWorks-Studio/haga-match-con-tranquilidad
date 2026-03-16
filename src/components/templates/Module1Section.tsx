@@ -17,7 +17,7 @@ export const Module1Section: React.FC<Module1SectionProps> = ({
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const res = sessionStorage.getItem("modulo1");
+    const res = sessionStorage.getItem("modulo1_result") ?? sessionStorage.getItem("modulo1");
     if (!res) return;
 
     try {
@@ -51,7 +51,8 @@ export const Module1Section: React.FC<Module1SectionProps> = ({
         finalResult: finalResult,
       };
 
-      sessionStorage.setItem("modulo1", JSON.stringify(res));
+      sessionStorage.setItem("modulo1", "success");
+      sessionStorage.setItem("modulo1_result", JSON.stringify(res));
       window.dispatchEvent(new Event("modules-progress-updated"));
     }
   };

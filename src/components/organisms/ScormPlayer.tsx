@@ -3,7 +3,14 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { Modal } from "../atoms/Modal";
 import { ScormFrame } from "../molecules/ScormFrame";
 
-export const ScormPlayer = ({ isOpen, onClose, scormUrl, onFinish }: any) => {
+export const ScormPlayer = ({
+  isOpen,
+  onClose,
+  scormUrl,
+  onFinish,
+  frameClassName = "",
+  frameScale = 1,
+}: any) => {
   const scormData = useRef<Record<string, string>>({});
   const latestResult = useRef<string | null>(null);
   const onFinishRef = useRef(onFinish);
@@ -117,7 +124,7 @@ export const ScormPlayer = ({ isOpen, onClose, scormUrl, onFinish }: any) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} maxWidth="max-w-5xl w-full">
       {isApiReady ? (
-        <ScormFrame src={scormUrl} />
+        <ScormFrame src={scormUrl} className={frameClassName} scale={frameScale} />
       ) : (
         <div className="flex flex-col items-center gap-4">
           <div className="w-8 h-8 border-4 border-[#038450] border-t-transparent rounded-full animate-spin"></div>

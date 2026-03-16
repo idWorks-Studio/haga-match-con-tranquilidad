@@ -13,13 +13,25 @@ export const Module3Section: React.FC<Module3SectionProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [allModulesCompleted, setAllModulesCompleted] = useState(false);
 
+  const isModuleSuccess = (value: string | null) => {
+    if (!value) return false;
+    if (value === "success") return true;
+
+    try {
+      const parsed = JSON.parse(value);
+      return parsed?.finished === "success";
+    } catch {
+      return false;
+    }
+  };
+
   const checkAllModulesCompleted = () => {
     if (typeof window === "undefined") return false;
 
     return (
-      sessionStorage.getItem("modulo1") === "success" &&
-      sessionStorage.getItem("modulo2") === "success" &&
-      sessionStorage.getItem("modulo3") === "success"
+      isModuleSuccess(sessionStorage.getItem("modulo1")) &&
+      isModuleSuccess(sessionStorage.getItem("modulo2")) &&
+      isModuleSuccess(sessionStorage.getItem("modulo3"))
     );
   };
   
@@ -69,6 +81,8 @@ export const Module3Section: React.FC<Module3SectionProps> = ({
         onClose={() => setIsModalOpen(false)}
         scormUrl="/scorm/encuesta-2/story.html"
         onFinish={handleFinish}
+        frameClassName="bg-black"
+        frameScale={1.05}
       />
 
       {allModulesCompleted && (
