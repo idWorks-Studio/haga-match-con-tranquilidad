@@ -310,6 +310,12 @@ html {
   height: 430px;
 }
 
+.superintendencia {
+  background-image: url('/assets/images/superintendencia.png');
+  background-repeat: no-repeat;
+  background-position: left 5px bottom 8%;
+}
+
 /* Variante para móvil: el rasgado pasa a estar abajo */
 @media (max-width: 768px) {
   .module-quiz-title {

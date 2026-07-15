@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useState } from 'react';
 import { QuizModule } from '@/src/components/organisms/QuizModule';
 import { cuestionario } from '@/src/data/quiz.json';
@@ -6,19 +6,18 @@ import { Question } from '@/src/models/QuizModel';
 import { CardModuleLeftContent } from '@/src/components/organisms/CardModuleLeftContent';
 import { ImgVideoButton } from '@/src/components/molecules/ImgVideoButton';
 import { Video } from "@/src/models/VideoModel";
-import { VideoPlayer } from '@/src/components/organisms/VideoPlayer';
+import { YouTubePlayer } from '@/src/components/organisms/YouTubePlayer';
 
 export interface Module2SectionProps {
   className?: string;
 }
 
 const videoThumbnails: Video[] = [
-  { id: 1, title: "Tenga siempre un plan B", image: "/assets/images/thumb1.png", path: 'assets/videos/03 administrar riesgo.mp4' },
-  { id: 2, title: "No arriesgue su tranquilidad", image: "/assets/images/thumb2.png", path: 'assets/videos/04 identificar riesgos.mp4' },
-  /*{ id: 3, title:"Independencia segura", image:"/assets/images/thumb3.png", path: 'assets/videos/05 mitigar riesgos.mp4' },*/
-  { id: 3, title: "Independencia segura", image: "/assets/images/thumb3.png", path: 'assets/videos/06 asumir riesgos.mp4' },
-  { id: 4, title: "Aventuras seguras", image: "/assets/images/thumb4.png", path: 'assets/videos/06 asumir riesgos.mp4' },
-  { id: 5, title: "Cada peso cuenta", image: "/assets/images/thumb5.png", path: 'assets/videos/07 compartir riesgos.mp4' },
+  { id: 1, title: "Tenga siempre un plan B", image: "/assets/images/thumb1.png", path: 'Tv9P22waIHk' },
+  { id: 2, title: "No arriesgue su tranquilidad", image: "/assets/images/thumb2.png", path: '3YGPwcxobxY' },
+  { id: 3, title: "Independencia segura", image: "/assets/images/thumb3.png", path: 'TFFCwPVux18' },
+  { id: 4, title: "Aventuras seguras", image: "/assets/images/thumb4.png", path: 'mjJ95UBh0tk' },
+  { id: 5, title: "Cada peso cuenta", image: "/assets/images/thumb5.png", path: '59OpBr1bTos' },
 ];
 
 export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }) => {
@@ -98,10 +97,10 @@ export const Module2Section: React.FC<Module2SectionProps> = ({ className = '' }
       )}
 
       {selectedVideoId && (
-        <VideoPlayer
+        <YouTubePlayer
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-          videoUrl={selectedVideoId}
+          videoId={selectedVideoId}
         />
       )}
     </section>
