@@ -7,7 +7,7 @@ import { Footer } from '@/src/components/atoms/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen w-full flex flex-col">
+    <main className="min-h-screen w-full flex flex-col superintendencia">
       <HeroSection />
       <div className="container max-w-5xl mx-auto px-4">
         <Module1Section />
