@@ -318,6 +318,11 @@ html {
 
 /* Variante para móvil: el rasgado pasa a estar abajo */
 @media (max-width: 768px) {
+  .superintendencia {
+    background-size: 4% auto;
+ 
+  }
+
   .module-quiz-title {
     padding: 20px 20px 50px 20px;
   }

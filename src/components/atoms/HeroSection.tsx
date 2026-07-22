@@ -20,17 +20,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className = '' }) => {
           className="w-full h-[250px] md:h-auto object-cover object-center"
           priority
         />
+
+        {/* SELLO UBICADO EN EL BORDE DERECHO */}
+        <div className="absolute right-2 bottom-2 h-[60px] md:right-8 md:top-1/2 md:-translate-y-1/2 md:bottom-auto md:h-[50%] z-10 pointer-events-none flex items-center justify-end">
+          <Image 
+            src="/assets/images/seguros-comercial.png" // Replace with your stamp path
+            alt="Sello de Vigilancia Superintendencia Financiera de Colombia"
+            width={300}  // Ancho original aproximado
+            height={1000} // Alto original aproximado
+            quality={100} // Alta calidad para texto pequeño
+            className="h-full w-auto object-contain"
+          />
+        </div>
       </div>
 
       <div className="flex flex-col items-center justify-center w-full mt-8 md:mt-12 space-y-12">
-        <div className="relative">
+        <div className="relative w-full max-w-[320px] sm:max-w-[450px] md:max-w-[501px] lg:max-w-[600px] xl:max-w-[680px]">
           <Image 
             src="/assets/images/tranquilo-nosotros-le-explicamos.png" 
             alt="Tranquilo, nosotros le explicamos"
-            width={501}
-            height={57}
-            quality={95}
-            className="w-full object-center"
+            width={680} // Subimos el ancho base del render de Next.js para mayor nitidez
+            height={77} // Manteniendo la proporción exacta ~8.8:1
+            quality={100} // Máxima calidad para pantallas Retina/High-DPI
+            className="w-full h-auto object-contain mx-auto"
             priority
           />
         </div>
